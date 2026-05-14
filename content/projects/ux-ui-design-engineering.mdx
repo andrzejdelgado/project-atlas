@@ -1,0 +1,739 @@
+---
+title: "UX/UI Design Engineering Skill"
+description: "33 design engineering principles for building interfaces that feel excellent — from font rendering and OKLCH color to optical alignment, hit areas, and animation timing."
+date: "2026-04-14"
+tags: ["AI", "Claude Code", "Vercel", "Cursor"]
+cta: "33 principles for AI agents"
+tint: "violet"
+icon: "sparkles"
+featured: true
+stats: ["33 principles", "6 categories", "Open source"]
+previewKind: "color-ramp"
+---
+
+import { Principle } from "@/components/principle";
+import { PrincipleDivider } from "@/components/principle-divider";
+import { DemoPlaceholder } from "@/components/demo-placeholder";
+import { PrincipleToc } from "@/components/principle-toc";
+import { InstallCommand } from "@/components/install-command";
+import { FontRenderingDemo } from "@/components/principles/font-rendering-demo";
+import { TypographySystemDemo } from "@/components/principles/typography-system-demo";
+import { LineLengthDemo } from "@/components/principles/line-length-demo";
+import { BaselineAlignmentDemo } from "@/components/principles/baseline-alignment-demo";
+import { FluidTypeScaleDemo } from "@/components/principles/fluid-type-scale-demo";
+import { FontFeaturesDemo } from "@/components/principles/font-features-demo";
+import { TextDecorationDemo } from "@/components/principles/text-decoration-demo";
+import { OpticalSizingDemo } from "@/components/principles/optical-sizing-demo";
+import { SaturatedNeutralsDemo } from "@/components/principles/saturated-neutrals-demo";
+import { OklchColorDemo } from "@/components/principles/oklch-color-demo";
+import { GradientRefinementDemo } from "@/components/principles/gradient-refinement-demo";
+import { ContainerBrightnessDemo } from "@/components/principles/container-brightness-demo";
+import { ConcentricRadiusDemo } from "@/components/principles/concentric-radius-demo";
+import { OpticalAlignmentDemo } from "@/components/principles/optical-alignment-demo";
+import { MinHitAreaDemo } from "@/components/principles/min-hit-area-demo";
+import { ElevationShadowDemo } from "@/components/principles/elevation-shadow-demo";
+import { FilterOverrideDemo } from "@/components/principles/filter-override-demo";
+import { InsetShadowDemo } from "@/components/principles/inset-shadow-demo";
+import { ZIndexScaleDemo } from "@/components/principles/z-index-scale-demo";
+import { DeEmphasizeDemo } from "@/components/principles/de-emphasize-demo";
+import { CursorAffordanceDemo } from "@/components/principles/cursor-affordance-demo";
+import { IconWeightDemo } from "@/components/principles/icon-weight-demo";
+import { SkipOnLoadDemo } from "@/components/principles/skip-on-load-demo";
+import { AnimationDurationDemo } from "@/components/principles/animation-duration-demo";
+import { EaseOutDemo } from "@/components/principles/ease-out-demo";
+import { ScrollDrivenDemo } from "@/components/principles/scroll-driven-demo";
+import { ReducedMotionDemo } from "@/components/principles/reduced-motion-demo";
+import { FlipDemo } from "@/components/principles/flip-demo";
+import { SpringDemo } from "@/components/principles/spring-demo";
+import { TransitionAllDemo } from "@/components/principles/transition-all-demo";
+import { ContentVisibilityDemo } from "@/components/principles/content-visibility-demo";
+import { CssContainmentDemo } from "@/components/principles/css-containment-demo";
+import { CompositorOnlyDemo } from "@/components/principles/compositor-only-demo";
+
+Most UI built by AI assistants today reads as "AI slop" — generic
+shapes, default radii, default shadows, default animations. The output
+works. It doesn't feel made.
+
+A seasoned UX/UI Design Engineer would close that gap with dozens of
+small choices most teams (and most agents) never make. This skill
+packages **33 of those choices** across six areas — typography, color,
+surfaces and depth, visual details, animations, and performance — into
+an instruction set Claude Code, Cursor, and other AI coding assistants
+load when you ask for UI work.
+
+<InstallCommand sourceUrl="https://github.com/andrzejdelgado/ux-ui-design-engineering" />
+
+<PrincipleToc />
+
+## How it works
+
+Two modes for the agent, plus the architecture that keeps each call
+cheap.
+
+### Building from scratch
+
+When you ask the agent to build a new component, page, or app, it
+applies all 33 principles directly — concentric radii on nested
+elements, two-layer elevation shadows, OKLCH color tokens, hit areas at
+the 40×40 floor, scroll-driven enter animations, compositor-only
+motion. The output reads like work from a seasoned UX/UI Design
+Engineer.
+
+### Auditing existing work
+
+When you point the agent at existing code or a finished design, it
+walks the file against the same 33 principles and reports back: what's
+off, why it matters, and the smallest change that fixes it. Returns a
+Before/After diff per topic — no speculative refactors, no rewrites of
+things that already work.
+
+### The routing trick
+
+Under the hood, the skill is split into a thin instruction file plus
+six topic-specific references. The agent reads only the references that
+match the task — a shadow question doesn't pull in animation timing, a
+gradient question doesn't pull in z-index conventions. Less context
+loaded, faster answers, lower cost per call.
+
+<PrincipleDivider variant="chapter" />
+
+## Operating protocol
+
+An operating discipline sits underneath, in the spirit of Andrej
+Karpathy's principles for AI-assisted work:
+
+- Don't assume, don't hide confusion, surface tradeoffs
+- Minimum code that solves the problem
+- Touch only what you must
+- Define success criteria, loop until verified, then stop
+
+The agent applies this whether it's building or auditing — no scope
+creep, no speculative abstractions, no drive-by refactors.
+
+<PrincipleDivider variant="chapter" />
+
+## Typography
+
+<Principle
+  id="font-rendering"
+  index="01"
+  category="Typography"
+  title="Font Rendering"
+>
+  The browser default `subpixel-antialiased` uses RGB channel hinting,
+  making text appear heavier and less crisp — most visible on dark
+  backgrounds. `-webkit-font-smoothing: antialiased` switches to grayscale
+  antialiasing on macOS, producing thinner, sharper strokes. Add
+  `text-rendering: optimizeLegibility` to enable kerning pairs and
+  ligatures. These properties have no effect on Windows where ClearType
+  handles rendering at the OS level.
+
+  <FontRenderingDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="typography-system"
+  index="02"
+  category="Typography"
+  title="Typography System"
+>
+  Font size creates scale. `line-height`, `letter-spacing`, and
+  `font-weight` create hierarchy. A heading and a body paragraph set to
+  the same weight and line-height will read as the same importance
+  regardless of their size difference.
+
+  Each context has different optical needs. Labels are read in a glance —
+  they need tighter line-height and slightly open tracking. Body text
+  needs breathing room. Display headings need compressed tracking to hold
+  together visually at large sizes.
+
+  <TypographySystemDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="line-length"
+  index="03"
+  category="Typography"
+  title="Line Length Constraint"
+>
+  The optimal range for comfortable reading is 45–90 characters per line.
+  Below 45, the eye changes direction so frequently reading becomes
+  choppy. Above 90, the reader struggles to find the start of the next
+  line — the eye drifts and loses its place.
+
+  For a single-column layout, target 65–90 characters. The `ch` unit is
+  relative to the width of the `0` glyph in the current font, so the
+  constraint scales correctly when users change their browser font size —
+  unlike `px` values.
+
+  <LineLengthDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="baseline-alignment"
+  index="04"
+  category="Typography"
+  title="Baseline Alignment"
+>
+  When text elements of different sizes share a row, aligning them to
+  their vertical center creates a visible float. The smaller element
+  appears to hover above the line. Align to the shared baseline instead —
+  the eye reads the row as a single visual unit.
+
+  <BaselineAlignmentDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="fluid-type-scale"
+  index="05"
+  category="Typography"
+  title="Fluid Type Scale"
+>
+  Media query breakpoints produce abrupt size jumps between fixed values.
+  `clamp()` interpolates smoothly across the full viewport range — no
+  jumps, no breakpoints. Always include a `rem`-based component alongside
+  `vw`; `vw` alone breaks when users increase their browser font size,
+  failing accessibility requirements.
+
+  <FluidTypeScaleDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="font-features"
+  index="06"
+  category="Typography"
+  title="Font Feature Settings"
+>
+  Controls advanced typographic features in OpenType fonts. Whenever
+  possible, prefer the higher-level `font-variant` shorthand or its
+  longhands — `font-variant-caps`, `font-variant-numeric`,
+  `font-variant-ligatures` — which produce more predictable results.
+  Reach for `font-feature-settings` only when no other way exists to
+  enable a specific OpenType feature. Each tag is a four-character
+  string, optionally followed by a positive integer or `on`/`off`.
+
+  Reach for `"tnum"` (or the equivalent `font-variant-numeric:
+  tabular-nums`) and `"ss02"` — Inter's disambiguation stylistic set that
+  produces the slashed zero — wherever digits need to line up vertically
+  or change in place without reflowing the layout: **tables and data
+  grids, dates and timestamps, prices and currency, counters and timers,
+  diff views, code and log line numbers, numeric form inputs (phone,
+  card, OTP, quantity), and chart axes or metric tiles.** Skip it for
+  body prose with the occasional number — proportional figures read more
+  naturally there.
+
+  <FontFeaturesDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="text-decoration"
+  index="07"
+  category="Typography"
+  title="Text Decoration Refinement"
+>
+  Browser default underlines sit on the baseline and clip through
+  descenders. Three properties fix this: `text-decoration-thickness`
+  controls weight, `text-underline-offset` lifts it clear of the
+  descender zone, and `text-decoration-skip-ink` breaks the line where it
+  would intersect a glyph. All three are font-relative — they scale at
+  any size.
+
+  <TextDecorationDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="optical-sizing"
+  index="08"
+  category="Typography"
+  title="Optical Sizing"
+>
+  Variable fonts with an optical size axis (`opsz`) automatically adjust
+  stroke contrast, x-height, and spacing based on the rendered size. A
+  12px label and a 64px display heading from the same typeface will each
+  use the most legible version of themselves — not the same design scaled
+  differently. Demo uses `Roboto Flex`, which exposes the axis between 8
+  and 144.
+
+  <OpticalSizingDemo />
+</Principle>
+
+<PrincipleDivider variant="chapter" />
+
+## Color
+
+<Principle
+  id="saturated-neutrals"
+  index="09"
+  category="Color"
+  title="Saturated Neutrals"
+>
+  Pure mathematical grays share no hue with any other color in the
+  palette. Next to a saturated brand color they read as foreign — a
+  different material placed inside the design. Infusing grays with a
+  slight tilt toward the dominant hue (under 5% chroma in OKLCH) creates
+  cohesion without visible color.
+
+  <SaturatedNeutralsDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="oklch-color"
+  index="10"
+  category="Color"
+  title="OKLCH for Perceptual Color"
+>
+  HSL lightness is not perceptually uniform. A yellow at L 60% appears
+  far brighter than a blue at L 60% — equal numbers, unequal perception.
+  OKLCH is perceptually uniform: equal numerical steps in lightness
+  produce equal visual steps across all hues. It also natively accesses
+  the P3 gamut on modern displays.
+
+  The scale below shows 6 equidistant lightness steps in HSL vs OKLCH.
+  Notice how the HSL steps feel uneven — the midtones cluster together.
+
+  <OklchColorDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="gradient-color-space"
+  index="11"
+  category="Color"
+  title="Gradient Refinement"
+>
+  Refined gradients are not single linear blends. Color space defines the
+  path between two stops; sRGB drags you through muddy mid-greys at the
+  midpoint, OKLAB stays in pastel territory, and OKLCH `longer hue` walks
+  the hue wheel itself.
+
+  Beyond color space, a small set of techniques does the real work:
+  **color-stop hints** bias the perceptual midpoint without adding a
+  third color, **extra stops** or **grain overlays** kill banding in
+  subtle dark gradients, **stacked radial gradients** turn a flat
+  backdrop into mesh-like ambient light, **hard stops** paint clean
+  splits without extra elements, and **conic gradients** deliver progress
+  rings and dial UI without SVG.
+
+  <GradientRefinementDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="container-brightness"
+  index="12"
+  category="Color"
+  title="Container Brightness Limits"
+>
+  In dark UIs, surfaces create depth through brightness. But too much
+  brightness difference makes containers compete with content. Too little
+  and the separation disappears. The ceiling for dark UIs is 12%
+  brightness difference; for light UIs, 7%.
+
+  <ContainerBrightnessDemo />
+</Principle>
+
+<PrincipleDivider variant="chapter" />
+
+## Surfaces & Depth
+
+<Principle
+  id="concentric-radius"
+  index="13"
+  category="Surfaces"
+  title="Concentric Border Radius"
+>
+  When elements are nested inside rounded containers, their border radii
+  must be concentric — not equal. Equal radii on parent and child create
+  a gap where the corner curves diverge. The formula is simple: outer
+  radius equals inner radius plus the padding between them.
+
+  A card with `border-radius: 20px` and `8px` padding needs an inner
+  button at `border-radius: 12px`. Mismatched radii on nested elements is
+  the single most common detail that makes interfaces feel unfinished.
+
+  <ConcentricRadiusDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="optical-alignment"
+  index="14"
+  category="Surfaces"
+  title="Optical Over Geometric Alignment"
+>
+  When geometric centering looks visually off, trust your eye over the
+  coordinates. A button with text plus a heavy trailing icon is the
+  classic case: equal padding on both sides makes the content drift
+  right, because the icon carries more visual weight than the empty space
+  on the left. Compensate by giving the side with the lighter element a
+  few extra pixels of padding — the content then reads as truly centered.
+
+  <OpticalAlignmentDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="min-hit-area"
+  index="15"
+  category="Surfaces"
+  title="Minimum Hit Area"
+>
+  Every interactive element needs at least 40×40px of tappable area.
+  Small icon buttons — close icons, nav toggles, inline actions — are
+  almost always under this threshold. Extend with a pseudo-element so the
+  visible design and the interaction boundary are independent.
+
+  <MinHitAreaDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="elevation-shadow"
+  index="16"
+  category="Surfaces"
+  title="Elevation Shadow"
+>
+  A natural elevation shadow follows two rules. **Blur is 2× the offset
+  distance** — `0 4px 8px` reads as natural lift, `0 4px 4px` reads as
+  flat, `0 4px 24px` reads as a glow. And **stack a sharp directional
+  layer with a soft diffuse layer** — a single `box-shadow` looks
+  digital, two layers mimic the way light actually behaves on a raised
+  surface. Both layers should respect the 2× rule, and both should scale
+  up proportionally on hover so the surface feels like it's rising
+  further from the page.
+
+  <ElevationShadowDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="filter-override"
+  index="17"
+  category="Surfaces"
+  title="CSS Filter Color Override"
+>
+  Third-party components, embedded SVGs, and icon fonts sometimes make
+  direct color manipulation impossible. CSS `filter` combinations can
+  tint any element to a target color when `color` and `fill` are
+  inaccessible. Use a filter generator tool to calculate the exact
+  sequence — this is precise, not approximate.
+
+  <FilterOverrideDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="inset-shadow"
+  index="18"
+  category="Surfaces"
+  title="Inset Shadow for Pressed States"
+>
+  An inset shadow communicates physical depression — the element appears
+  to push into the surface when activated. Combined with a subtle scale,
+  it gives button presses genuine tactile feedback. Press the button
+  below to feel the difference.
+
+  <InsetShadowDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="z-index-scale"
+  index="19"
+  category="Surfaces"
+  title="Elevation + Z-Index Scale"
+>
+  Hardcoded z-index values create stacking conflicts that compound as a
+  codebase grows. A named token scale with stepped increments solves
+  this: gaps allow future layers to be inserted without rewriting the
+  entire stack. An element inside a stacking context can never visually
+  exceed its parent — use `isolation: isolate` on component roots to
+  contain their internal stacking without polluting the global space.
+
+  <ZIndexScaleDemo />
+</Principle>
+
+<PrincipleDivider variant="chapter" />
+
+## Visual Details
+
+<Principle
+  id="de-emphasize"
+  index="20"
+  category="Visual Details"
+  title="De-emphasize to Emphasize"
+>
+  Creating visual hierarchy is more about reducing the prominence of
+  secondary elements than increasing the prominence of primary ones.
+  Lower the contrast, weight, and size of supporting content — the
+  primary content reads as more important because the differential
+  increased, not because it got louder.
+
+  <DeEmphasizeDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="cursor-affordance"
+  index="21"
+  category="Visual Details"
+  title="Cursor Affordance"
+>
+  The cursor is a free affordance signal. It communicates intent before
+  the user commits to an interaction. Mismatching cursor to element
+  behavior creates a moment of uncertainty that erodes trust. Hover each
+  element below — the cursor tells you exactly what it does before you
+  click.
+
+  <CursorAffordanceDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="icon-weight"
+  index="22"
+  category="Visual Details"
+  title="Icon Weight Reduction"
+>
+  Icons rendered at the same opacity as adjacent text appear optically
+  heavier. Text is composed of thin strokes with generous negative space.
+  Icons — even outline-style — have more filled area. At full opacity
+  next to a label, the icon dominates. Reducing to 80–90% opacity
+  balances the pair without making the icon invisible.
+
+  <IconWeightDemo />
+</Principle>
+
+<PrincipleDivider variant="chapter" />
+
+## Animations
+
+<Principle
+  id="skip-on-load"
+  index="23"
+  category="Animations"
+  title="Skip Animation on Page Load"
+>
+  Enter animations are triggered by user interaction — opening a panel,
+  navigating to a view, adding an item. Running them on the initial page
+  render makes the interface feel unstable. The two side-by-side
+  dashboards below let you compare: **Reload page** simulates a fresh
+  navigation, and **Open dialog** simulates a user-driven interaction.
+  The bad page replays its enter animation on every reload; the good
+  page only animates the dialog when the user explicitly opens it.
+
+  <SkipOnLoadDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="animation-duration"
+  index="24"
+  category="Animations"
+  title="Animation Duration Standards"
+>
+  Duration should match complexity. Simple state changes need to feel
+  instant. Complex enter sequences need room to breathe. Anything over
+  400ms makes the interface feel sluggish — the user has stopped and is
+  waiting for the UI to catch up with them.
+
+  <AnimationDurationDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="ease-out"
+  index="25"
+  category="Animations"
+  title="Ease-out for Interactive"
+>
+  Easing communicates physics. `ease-out` — fast start, slow deceleration
+  — mimics an object responding immediately to input and settling
+  gradually. This gives the impression of instant response. `ease` (slow
+  start) feels like the interface is warming up before it moves.
+
+  <EaseOutDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="scroll-driven"
+  index="26"
+  category="Animations"
+  title="Scroll-Driven Animations"
+>
+  Elements can animate as they enter the viewport using the native CSS
+  scroll timeline API — no JavaScript, no `IntersectionObserver`, no
+  library. Scroll the container below to see it in action. Chrome 115+,
+  Firefox 110+.
+
+  <ScrollDrivenDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="reduced-motion"
+  index="27"
+  category="Animations"
+  title="Reduced Motion"
+>
+  `prefers-reduced-motion: reduce` is set by users with vestibular
+  disorders, motion sensitivity, or epilepsy. Vestibular disorders affect
+  approximately 35% of adults over 40. Swap translate and scale
+  animations for opacity-only fades — they convey transition without
+  spatial movement.
+
+  <ReducedMotionDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="flip"
+  index="28"
+  category="Animations"
+  title="FLIP for Layout Animations"
+>
+  Animating `width`, `height`, `top`, or `left` triggers full layout
+  recalculation on every frame. The FLIP technique converts these into
+  compositor-only `transform` animations: record the First position,
+  apply the Last state, Invert with a transform to the start position,
+  Play to identity. Pin or shuffle the items below — every reorder runs
+  a manual FLIP using the Web Animations API.
+
+  <FlipDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="spring"
+  index="29"
+  category="Animations"
+  title={
+    <>
+      Spring Physics via <code>linear()</code>
+    </>
+  }
+>
+  CSS `linear()` generates custom easing functions that simulate spring
+  and bounce physics without a motion library. Use a spring generator
+  tool to produce the values from spring parameters. If the project
+  already includes `motion` or `framer-motion`, use their spring API
+  instead — the result is identical with cleaner syntax. `bounce` should
+  always be `0` or near `0` for UI transitions. Pick a preset below and
+  tap **Open** to feel each spring against the same popover.
+
+  <SpringDemo />
+</Principle>
+
+<PrincipleDivider variant="chapter" />
+
+## Performance
+
+<Principle
+  id="transition-specificity"
+  index="30"
+  category="Performance"
+  title={
+    <>
+      Never Use <code>transition: all</code>
+    </>
+  }
+>
+  `transition: all` registers a watcher on every animatable CSS property.
+  Any change — including unintentional ones — triggers a transition.
+  Hover both buttons below to see the difference. The left button
+  animates its size and padding unexpectedly because `all` watches
+  everything.
+
+  <TransitionAllDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="content-visibility"
+  index="31"
+  category="Performance"
+  title={
+    <>
+      <code>content-visibility: auto</code>
+    </>
+  }
+>
+  Defers layout and paint for off-screen elements until they approach the
+  viewport. The browser still reserves space but skips the rendering work
+  — measurably effective on feed layouts, dashboards, and long lists.
+  Always pair with `contain-intrinsic-size` to prevent the scrollbar from
+  jumping as elements render. Toggle the chips below to see which cards
+  are paying the rendering cost as you scroll.
+
+  <ContentVisibilityDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="css-containment"
+  index="32"
+  category="Performance"
+  title="CSS Containment"
+>
+  `contain: content` tells the browser that an element's internal layout,
+  paint, and style are sealed inside its box. Changes within the
+  component cannot affect anything outside it — and paint is clipped at
+  the boundary. Below, the same animated blob is rendered inside both
+  cards. Without containment, the blob bleeds out and forces the browser
+  to repaint the whole region around the card; with `contain: paint`,
+  the paint is clipped to the card and nothing outside is touched.
+
+  <CssContainmentDemo />
+</Principle>
+
+<PrincipleDivider />
+
+<Principle
+  id="compositor-only"
+  index="33"
+  category="Performance"
+  title="Compositor-Only Animations"
+>
+  The browser renders in three phases: layout → paint → composite. Only
+  `transform` and `opacity` skip the first two phases and run on the
+  GPU. Every other animated property forces recalculation on every
+  frame. Never animate layout properties for motion effects — use FLIP
+  to convert them to transforms.
+
+  <CompositorOnlyDemo />
+</Principle>

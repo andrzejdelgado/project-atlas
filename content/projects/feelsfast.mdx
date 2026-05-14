@@ -1,0 +1,621 @@
+---
+title: "Feelsfast"
+description: "An educational platform on perceived performance, built from real iGaming research — patterns, scenarios, concepts, and an AI skill."
+date: "2026-05-13"
+tags: ["Perceived Performance", "Design Engineering", "Research", "AI", "Education"]
+cta: "An educational platform on perceived performance"
+tint: "blue"
+icon: "rocket"
+stats: ["32 demos", "10 essays", "Since 2024", "Research 2024", "Platform 2026", "AI Skill 2026"]
+---
+
+import { FeelsfastCta } from "@/components/feelsfast/feelsfast-cta";
+import { FeelsfastToc } from "@/components/feelsfast/feelsfast-toc";
+import { Credits } from "@/components/feelsfast/credits";
+import { TimeBandsHero } from "@/components/feelsfast/time-bands-hero";
+import { TimeBandsDemo } from "@/components/feelsfast/time-bands-demo";
+import { MousedownVsClickDemo } from "@/components/feelsfast/mousedown-vs-click-demo";
+import { PreActionFeedbackDemo } from "@/components/feelsfast/pre-action-feedback-demo";
+import { PrefetchOnHoverDemo } from "@/components/feelsfast/prefetch-on-hover-demo";
+import { StaleWhileRevalidateDemo } from "@/components/feelsfast/stale-while-revalidate-demo";
+import { OptimisticUiDemo } from "@/components/feelsfast/optimistic-ui-demo";
+import { NavigationSkeletonDemo } from "@/components/feelsfast/navigation-skeleton-demo";
+import { DeterminateProgressDemo } from "@/components/feelsfast/determinate-progress-demo";
+import { StreamingPacingDemo } from "@/components/feelsfast/streaming-pacing-demo";
+import { ToolCallTransparencyDemo } from "@/components/feelsfast/tool-call-transparency-demo";
+import { BackgroundWorkNotificationDemo } from "@/components/feelsfast/background-work-notification-demo";
+import { PaymentSuccessFlowDemo } from "@/components/feelsfast/payment-success-flow-demo";
+import { MotionContrastDemo } from "@/components/feelsfast/motion-contrast-demo";
+import { PrincipleDivider } from "@/components/principle-divider";
+
+<TimeBandsHero />
+
+Most product teams treat loading like an afterthought. A spinner here, a
+shimmer there, a "please wait" wherever the network is slow. The
+unfortunate fact is that the spinner is rarely the right answer, and the
+moment you accept that, you start designing for *perceived* time
+rather than measured time. The two are not the same thing — and the
+distance between them is exactly where the user experience lives.
+
+Feelsfast started inside an iGaming operator. The team I led ran a
+five-day research sprint, followed by a month of implementation, and
+the patterns we shipped landed in the product without much fanfare.
+Two years later, I rebuilt the project as a public platform — a place
+where the same patterns, the same research, and the same
+opinionated rules sit in the open, ready to be used by anyone who
+ships UI for a living. Last month, I added an AI page and a dedicated
+skill so coding agents (Claude Code, Cursor, the rest) can pull these
+choices into their daily work.
+
+This is the long-form version of what is on the platform — the story
+behind why each band, each pattern, and each refusal got there.
+
+<FeelsfastCta
+  liveUrl="https://feelsfast.fyi"
+  platformRepo="https://github.com/andrzejdelgado/feelsfast"
+  skillRepo="https://github.com/andrzejdelgado/feelsfast-skill"
+/>
+
+<FeelsfastToc />
+
+## TL;DR
+
+<style>{`
+  .tldr-list ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    counter-reset: tldr;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem !important;
+  }
+  .tldr-list li {
+    counter-increment: tldr;
+    position: relative;
+    padding-left: 2.75rem;
+    line-height: 1.7;
+  }
+  .tldr-list li p {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+  }
+  .tldr-list li::before {
+    content: counter(tldr, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-muted-foreground);
+    opacity: 0.55;
+  }
+  .tldr-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+  .tldr-tags span {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    padding: 0.125rem 0.4375rem;
+    background-color: transparent;
+  }
+`}</style>
+
+<div className="tldr-list">
+  <ul>
+    <li>
+      Led a 5-day research sprint that produced a four-band framework for perceived performance, organised around the Miller / Card / Doherty / Nielsen thresholds.
+      <div className="tldr-tags">
+        <span>User research</span>
+        <span>Personas</span>
+      </div>
+    </li>
+    <li>
+      Shipped the patterns across the product: payment support volume dropped <strong>−38%</strong>, navigation complaints fell to <strong>~0%</strong> of recorded feedback.
+      <div className="tldr-tags">
+        <span>In-house design system</span>
+        <span>A/B testing</span>
+      </div>
+    </li>
+    <li>
+      Two years later, rebuilt the work as a public platform at <a href="https://feelsfast.fyi" target="_blank" rel="noopener noreferrer">feelsfast.fyi</a> — 32 interactive demos and 10 essays grounded in the original research.
+      <div className="tldr-tags">
+        <span>Next.js</span>
+        <span>Tailwind</span>
+        <span>MDX</span>
+        <span>Vercel</span>
+      </div>
+    </li>
+    <li>
+      Last month, released an installable AI Skill so Claude Code, Cursor, and other coding agents can apply the same patterns without re-deriving the rules.
+      <div className="tldr-tags">
+        <span>Markdown</span>
+        <span>Claude Code</span>
+      </div>
+    </li>
+    <li>
+      Worked from <strong>1,000+</strong> recorded feedback calls and a proprietary VPN-emulation tool that surfaced <strong>+1–2 s</strong> of hidden latency routed traffic was paying every page.
+      <div className="tldr-tags">
+        <span>web.dev pagespeed</span>
+        <span>VPN emulation</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+## Origin
+
+In April 2024, the design team I led was given five days to figure out
+why the product felt slow. Not why it *was* slow — that was a separate
+engineering thread we did not own — but why it *felt* slow even on the
+days when the metrics behaved.
+
+A few constraints shaped the work from minute one. We could not reach
+users directly; player feedback arrived through an intermediary, in
+batches. We had access to a thousand-plus feedback calls captured over
+the previous quarter, along with the data and personas the operator
+already maintained. And we were standing on a Legacy Platform that
+had been accreting fixes for years — meaning every recommendation had
+to survive integration into code nobody enjoyed touching.
+
+I'd argue that constraints like these are usually where the most
+honest design happens. You stop pretending you can run a perfect study
+and start sorting what you already know. We pulled the calls into
+themes. We built three player personas — call them players if you want
+to be precise, users if you'd rather stay generic — and we measured
+their real load times using web.dev pagespeed and an internal VPN
+emulation tool the operator had built for QA. The emulator mattered:
+a substantial slice of the player base routes through VPNs, which add
+**+1,000 to +2,000 ms** of latency on top of the baseline. That number
+quietly invalidates a lot of the design decisions you'd make if you
+only tested on a corporate laptop in Lithuania.
+
+By day five we had a working theory and a pile of solutions, organised
+around the only taxonomy that actually held up: the four time bands the
+HCI literature has been talking about since Miller in 1968. The next
+month was implementation — five engineers and a product manager, and
+me on call from design.
+
+That work shipped quietly inside a single iGaming operator. Two years
+later, after Project Valinor closed its first phase (a
+platform-consolidation initiative we ran the following year) and after
+I'd had time to look at the patterns from outside the office, I
+realised the research had a second life if I could publish it. I built
+the platform in April 2026. The AI page and the dedicated skill landed
+this month.
+
+<PrincipleDivider variant="chapter" />
+
+## By the numbers
+
+<div className="border-border/60 bg-muted/15 mt-6 grid gap-3 rounded-2xl border p-4 sm:grid-cols-2 lg:grid-cols-4">
+  <div className="border-border/60 bg-card/40 flex flex-col rounded-xl border px-4 py-5">
+    <p className="text-muted-foreground/70 font-mono text-2xs uppercase tracking-mini">Feedback calls behind the research</p>
+    <p className="text-foreground mt-auto pt-4 text-3xl font-semibold tabular-nums">1,000+</p>
+  </div>
+  <div className="border-border/60 bg-card/40 flex flex-col rounded-xl border px-4 py-5">
+    <p className="text-muted-foreground/70 font-mono text-2xs uppercase tracking-mini">Added by VPN routing</p>
+    <p className="text-foreground mt-auto pt-4 text-3xl font-semibold tabular-nums">+1–2 s</p>
+  </div>
+  <div className="border-border/60 bg-card/40 flex flex-col rounded-xl border px-4 py-5">
+    <p className="text-muted-foreground/70 font-mono text-2xs uppercase tracking-mini">Drop in payment support volume</p>
+    <p className="text-foreground mt-auto pt-4 text-3xl font-semibold tabular-nums">−38%</p>
+  </div>
+  <div className="border-border/60 bg-card/40 flex flex-col rounded-xl border px-4 py-5">
+    <p className="text-muted-foreground/70 font-mono text-2xs uppercase tracking-mini">Navigation complaints, post-rollout</p>
+    <p className="text-foreground mt-auto pt-4 text-3xl font-semibold tabular-nums">~0%</p>
+  </div>
+</div>
+
+A short note on the last two: I'm using the euphemisms intentionally.
+Payment support volume dropped *substantially* — internally that was
+the **38%** figure. Negative feedback about navigation dropped to
+*near zero* — internally **~0%** of recorded complaints touched it
+after the patterns were live. The numbers are not the point; the
+shift is. But for the people who care about the numbers, the numbers
+are there.
+
+<PrincipleDivider variant="chapter" />
+
+## The platform
+
+What sits on feelsfast.fyi today is the durable artefact. The
+research is the input. The platform is the output, and it has its own
+shape — designed so a product designer, a design engineer, a
+front-end engineer, or a PM/PO can each open it on a Tuesday afternoon
+and walk away with something they can put into the next sprint.
+
+There are six sections worth naming.
+
+**Playground.** Thirty-two interactive demos. Each one isolates a
+single perception pattern — a skeleton, a streaming pacing rule, an
+optimistic toggle with its rollback — and lets you press, click, and
+hover until the difference between the right pattern and the wrong
+pattern is visceral rather than theoretical. The platform's argument
+is in the writing; the proof is here.
+
+**Scenarios.** Real-life situations. A deposit flow. A long-running
+agent task. A search input that gets noisy under intermittent network.
+A page transition that has to survive a VPN spike. Each scenario takes
+a wait the team has actually shipped, walks through the patterns that
+fit it, and shows the trade-offs. The point is not to be exhaustive;
+it is to give the reader a few templates that map cleanly onto the
+work they already have queued.
+
+**Concepts.** Ten essays. Each one is rooted in scientific and
+industry papers — the Miller 1968 / Card et al. 1991 / Doherty 1982
+lineage that defines the time bands, plus Harrison et al. on
+perceived progress, Block & Zakay on duration, Anstis & Cavanagh on
+motion contrast, and so on. Having the citations there matters. The
+platform is not asking the reader to take perceived performance on
+faith — it is showing the work, so a designer can argue with it, an
+engineer can poke at it, and a PM can take it to leadership without
+having to invent the rationale themselves.
+
+**Glossary.** Terms a reader might not be familiar with, defined the
+way a practitioner would define them. Short, opinionated, not
+Wikipedia.
+
+**References.** Every paper, every link, every tool — collected in
+one page, so anyone who wants to dig deeper has a single entry point
+instead of trying to scrape footnotes from the essays.
+
+**AI page + Skill.** The most recent addition, landed this month. The
+AI page introduces the skill to a human reader. The skill itself
+(`feelsfast`) is the one I ship for Claude Code, Cursor, and other
+agentic coding tools — same time bands, same rules, packaged as an
+instruction set the agent loads when it generates or modifies UI that
+includes async work. It is the platform's way of meeting AI-assisted
+workflows where they actually happen.
+
+**Pattern Creator.** In development. A teaser page is up. The idea is
+to let designers and engineers compose their own perceived-performance
+patterns from primitives — skeletons, transitions, indicators,
+narration — and export a spec the team can ship. More on that when it
+lands.
+
+<PrincipleDivider variant="chapter" />
+
+## The four time bands
+
+The taxonomy is decades old. The discipline of using it is the part
+that fails most often. The platform organises every pattern, every
+scenario, and every demo around the same four buckets, and I keep
+finding that teams who internalise this taxonomy stop arguing about
+spinners.
+
+Here is the working set, with twelve representative demos distributed
+across the bands.
+
+### Instant — 0 to 100 ms
+
+What the literature calls the *limit of perceived continuity*. Below
+about 100 ms, the user perceives the system as having reacted to them.
+Above it, they perceive a delay.
+
+There is no spinner here. There is pre-action feedback (the `:active`
+state, a press animation, a focus ring) and there is the cheap trick
+of binding interactions to `pointerdown` instead of `click`. That
+trick is not a magic trick. It is a free 100–150 ms of latency budget,
+quietly handed to you by the fact that humans hold the button down for
+a while before releasing it.
+
+<TimeBandsDemo />
+
+<MousedownVsClickDemo />
+
+<PreActionFeedbackDemo />
+
+### Responsive — 100 ms to 1 s
+
+The range where the user still perceives the action as theirs, but
+notices the wait. Stale-while-revalidate keeps content visible while
+the next version is fetched. Prefetching on hover steals the head start
+when intent is predictable. Optimistic UI renders the action
+immediately when ~99% of attempts succeed — but only ever when the
+rollback path actually exists, and is honest, for the failing 1%.
+
+<PrefetchOnHoverDemo />
+
+<StaleWhileRevalidateDemo />
+
+<OptimisticUiDemo />
+
+### Engaged — 1 to 10 s
+
+This is the band where most teams over-design and under-think.
+Spinners are too thin. Generic shimmers are noise. The pattern that
+actually works is a skeleton that *matches the final layout* — so the
+wait reads as the page already being there, just not yet rendered. If
+you have real duration information, a determinate progress bar with
+backwards-shimmer or eased deceleration produces a perceived **~12%
+speed-up** over a plain linear bar (Harrison et al. 2010). And if you
+are streaming text — an AI response, a long-running summary — pace
+the tokens at a reading rhythm rather than blasting them at network
+speed.
+
+<NavigationSkeletonDemo />
+
+<DeterminateProgressDemo />
+
+<StreamingPacingDemo />
+
+### Long — 10 s and beyond
+
+Above ten seconds, the goal is no longer to bridge the wait — it is to
+*release the user from it*. Send the long-running work to the
+background. Acknowledge that it started. Notify when it is done.
+And while it runs, if the work has discrete steps an agent or service
+can name out loud ("reading file…", "running tests…"), narrate them.
+Block & Zakay's work on retrospective duration is unambiguous: a wait
+that the user can decompose into events feels meaningfully shorter
+than the same wait spent staring at a generic spinner.
+
+<ToolCallTransparencyDemo />
+
+<BackgroundWorkNotificationDemo />
+
+<PaymentSuccessFlowDemo />
+
+<PrincipleDivider variant="chapter" />
+
+## Method that worked
+
+The single most useful thing I did during the implementation phase was
+not a research insight or a pattern recommendation. It was a process
+choice that I'd argue is portable to any design–engineering
+collaboration: I shipped feasibility evidence alongside the design.
+
+In practice that meant short code snippets — sometimes ten lines,
+sometimes thirty — bolted to each pattern spec, demonstrating that the
+solution would compile inside the Legacy Platform without invoking
+heroic refactors. I cannot share the snippets here (they belong to the
+operator), but I can describe what they did and why it mattered.
+
+There are three things worth separating here:
+
+1. **Constraints discounted in the design phase do not need to be
+   re-litigated at integration.** The snippets surfaced the framework
+   conflicts, the styling collisions, the missing tokens — and they
+   surfaced them while the design was still pliable. By the time we
+   walked the engineers through the spec, half of the questions
+   they'd normally raise had already been answered, and the answers
+   were in the design file rather than in a Slack thread two weeks
+   later.
+
+2. **Designers who ship feasibility evidence with the design collapse
+   the handoff loop.** This is the one I keep coming back to. The
+   conventional pattern — design now, hand off, engineer pushes back,
+   redesign, hand off again — is a loop that has been normalised
+   because it is familiar, not because it is efficient. Closing it
+   requires the designer to do one extra thing: prove, in code, that
+   the design can live where it is meant to live. The cost is
+   measurable; the savings are not, because they show up as
+   *meetings that never happen*.
+
+3. **The rest of the process did the rest of the work.** We ran a
+   kick-off meeting to align on scope, an internal design workshop to
+   ideate (without engineering, on purpose — design needs room to
+   propose absurd ideas without inheriting feasibility anxiety),
+   cross-collaboration syncs once the proposals were grounded, a
+   presentation-and-acceptance moment with the full team, and a
+   constant Mattermost channel during development with me on call.
+   None of these are exotic. The discipline is in actually doing all
+   of them, in that order.
+
+Two years later, when I look at the artefacts of the project — the
+spec docs, the design files, the snippets, the support metrics — the
+thing I am proudest of is not any single pattern. It is the fact that
+no engineer pushed back at handoff, because no engineer needed to.
+Every constraint had already been discounted.
+
+<PrincipleDivider variant="chapter" />
+
+## Challenges
+
+A few real ones worth naming, because they shaped the work more than
+the literature did.
+
+**No direct user access.** The operator did not allow direct contact
+with players, so user feedback reached us through an intermediary.
+We worked from 1,000+ recorded feedback calls and crafted personas
+from them rather than running fresh interviews. The cost was speed.
+The gain was that we couldn't fall in love with a single
+articulate user — the feedback was statistical, which is a more
+honest input for performance work.
+
+**VPN-induced latency.** A non-trivial slice of the player base
+routes through VPNs. The added latency — **+1,000 to +2,000 ms** on
+top of baseline — invalidates timing assumptions you'd make from a
+corporate laptop in the same city as the data centre. We measured
+persona-realistic load times using web.dev pagespeed and an internal
+VPN emulation tool, and we tuned patterns against the worst-case
+band rather than the median.
+
+**Legacy Platform constraints.** Bold pattern changes were expensive
+on the platform we shipped against. This sharpened the design rather
+than blunting it — every pattern had to earn its integration cost, and
+the ones that survived (the in-button payment spinner, the
+in-component navigation skeleton) earned it because they slotted into
+existing components rather than asking for new ones.
+
+**Partner-mediated data.** The personas were synthesised from
+secondary data plus our own knowledge. We could not validate the
+personas against fresh interviews, which means we erred on the side of
+patterns that hold across personas rather than patterns that delight a
+specific one. That happens to be the right bias for perceived
+performance — the band you fall into matters more than who you are.
+
+<PrincipleDivider variant="chapter" />
+
+## What we shipped & learned
+
+Two patterns surprised me, in opposite directions.
+
+**The over-rated one.** A global top-edge determinate progress bar,
+with a shimmering last 5%, sounded like the right answer for
+navigation. It is visible, it implies progress, it is the pattern
+half the web has converged on. We built it. Then we tested it. And
+the testing said something uncomfortable: an in-component skeleton —
+matched to the final layout, with supporting loading patterns inside
+the component itself — beat it on perceived speed. The progress bar
+focused attention on the edge of the screen, away from where the
+content was about to appear. The skeleton focused attention on the
+shape the content would take, which is where the user's eye was
+already going. The fancy pattern lost. The boring pattern won.
+
+**The under-rated one.** After a payment is finalised, the action
+remains where the user pressed it. An indeterminate spinner replaces
+the button label. On success, the button morphs into a success state,
+and a small toast appears with a *helpful link* — pointing at the
+page the user most often visits next. I lobbied hard for this. It was
+not the obvious choice; the obvious choice is a centred modal or a
+full-page redirect. But the in-button pattern keeps the user oriented
+(the action stays at the source), and the helpful link converts the
+moment of confirmation into a moment of *forward motion*. The
+support-volume drop on payments was driven, in large part, by this
+single pattern.
+
+**The finding that surprised me most.** A 1968 paper by Anstis &
+Cavanagh on perceived velocity describes an effect I had no business
+not knowing: **objects with lower luminance contrast appear to move
+more slowly than objects with high contrast**, even when their physical
+velocity is identical. This is six decades old. It is everywhere in
+the trailing motion-perception literature. And it has direct,
+practical implications for any progress indicator, any streaming
+content, any shimmer — the visual contrast of the moving element
+governs how fast the system feels, independently of how fast it
+actually is.
+
+The demo is below. Same distance. Same duration. Different
+perception.
+
+<MotionContrastDemo />
+
+The most counterintuitive findings come from the literature — but
+they make meaningful impact only when they are paired with A/B tests
+and a cross-collaboration team that values prep work over heroics.
+Anstis & Cavanagh would not have changed our progress bar without
+the testing infrastructure that let us prove it. The infrastructure
+would not have produced the insight without the literature. The two
+have to travel together.
+
+<PrincipleDivider variant="chapter" />
+
+## Results
+
+Internally, the rollout produced three signals worth recording.
+
+**Player feedback.** Our partners reported, in the weeks after the
+patterns went live, that recorded player feedback turned positive on
+the surfaces we'd touched. This is a soft signal — the feedback was
+mediated, the methodology was loose — but it was consistent across
+the touchpoints.
+
+**Payment support volume dropped substantially (−38%).** The
+in-button spinner + helpful-link toast was the load-bearing pattern.
+Players stopped phoning support to ask whether their deposit had
+gone through.
+
+**Navigation complaints fell to near zero (~0% of recorded
+feedback).** The skeleton-plus-in-component-loading pattern absorbed
+the wait visibly enough that players stopped registering navigation
+as a problem.
+
+The right way to read these numbers is *direction-of-travel*, not
+*magnitude*. The operator did not run a clean A/B. The patterns were
+not the only thing that changed in the affected windows. But the
+shape of the shift was unambiguous, and it lined up with what the
+research predicted — which is the most you can usually ask of a
+five-day study turned one-month implementation.
+
+<PrincipleDivider variant="chapter" />
+
+## Reflection
+
+Three lessons stuck with me. They are the reason the project survived
+two years inside a folder and earned its way out as a public platform.
+
+**Research is leverage only when it is published.** Internal-only
+research helps one team. Published research compounds across the
+industry. The April 2024 work was useful inside the operator the day
+it landed. It became *useful to anyone else* only when I rebuilt it
+as a platform in April 2026. The lesson is not that internal work is
+wasted — it is that the act of publication is the difference between
+helping one team and helping a hundred. There is no point in doing
+research at the senior level and keeping it private.
+
+**Perceived performance is a measurable lever, not a vibes-based
+polish item.** Treat it like accessibility — auditable, owned,
+shipped with constraints. The shift is small but consequential:
+instead of "this feels a bit slow, can we polish it," the
+conversation becomes "this is sitting in the Engaged band, the
+pattern is wrong, here is the correct one, here is the cost." The
+discipline is in the taxonomy, not in the taste.
+
+**The most counterintuitive findings come from the literature, but
+they only make impact when paired with A/B tests and a
+cross-collaboration team that is open to learn and investigate.**
+Anstis & Cavanagh on motion contrast was a six-decade-old insight no
+internal experiment would have surfaced. We found it because we
+combed the literature; we shipped it because the engineering team
+trusted the design enough to test it; and we kept it because the
+testing showed it worked. Reading the room is not enough. Reading the
+papers is not enough. The combination is what produces durable
+shipped work.
+
+And one piece of cross-collaboration craft, because the project would
+not have shipped without it: a senior designer's job, when the work
+intersects engineering, is to *carry feasibility into the design
+phase* — not to assume it will be sorted out later. If you do that
+work, the engineers around you will not push back at handoff. They
+will collaborate, because there is nothing for them to litigate. That
+is the practical version of what I keep telling junior designers
+about cross-functional trust: trust is built on shared vocabulary and
+discounted constraints, not on shared opinions.
+
+<PrincipleDivider variant="chapter" />
+
+## Credits
+
+This project could not exist without the wonderful people I
+collaborated with through the research, the implementation, and the
+years of refinement that followed. Each card links to their LinkedIn.
+
+<Credits />
+
+<PrincipleDivider variant="chapter" />
+
+## Project info
+
+**Role.** Principal Product Designer.
+
+**Expertise.** UX research, perceived performance, design–engineering
+collaboration, design systems.
+
+**Platforms.** Web.
+
+**Affiliation.** The iGaming Operator (under NDA).
+
+**Tools.** web.dev pagespeed, proprietary VPN emulation, Mattermost,
+the in-house design system, the Legacy Platform.
+
+**Timeline.** Research: April 2024 (1 week). Implementation:
+April–May 2024 (1 month). Platform: April 2026. AI Skill: May 2026.
+
+If you've read this far, open the [platform](https://feelsfast.fyi),
+walk one band, and tell me where the patterns help — or where they
+break, because they will sometimes, and those failures are the next
+version of the research.

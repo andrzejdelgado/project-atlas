@@ -1,0 +1,41 @@
+---
+title: "The long horizon"
+description: "Designing a product platform that compounds value past its first reorg, then its second."
+date: "2025-11-20"
+company: "The Workshop"
+cover: "/images/placeholder-cover.svg"
+tags: ["systems", "strategy"]
+---
+
+## Why this exists
+
+Most product platforms calcify between year three and year five. The
+people who built them have moved on, the constraints they were solving
+for have changed, and the system stops absorbing new requirements.
+This is the story of trying to design *against* that fate from the
+start.
+
+## The bet
+
+Build for **what we can't predict**. Three principles:
+
+- **Architecture as a question, not an answer.** Each major decision
+  shipped with a "this is wrong if…" clause that future teams could
+  use to disprove it.
+- **One opinionated default, multiple escape hatches.** The platform
+  shipped with a single recommended path for every choice — and a
+  documented way out for teams who hit its limits.
+- **Compounding documentation.** Every PR that changed a behaviour
+  also updated the doc that explained the behaviour. No exceptions.
+
+## What changed
+
+Two reorgs and a CEO transition later, the platform is still in use,
+still being extended by teams who didn't build it. The documentation
+debt is the lowest of any platform I've worked on.
+
+## The honest part
+
+This wasn't free. Every shipped decision took 30–40% longer than the
+"just-make-it-work" path. The bet only pays off if the system is
+expected to live for years.

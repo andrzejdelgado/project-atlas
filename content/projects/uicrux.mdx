@@ -1,0 +1,461 @@
+---
+title: "UI Crux"
+description: "A design engineering platform I founded in May 2022 to help product designers become engineers' true allies — CSS fundamentals, naming conventions, asset delivery, and a visual catalog of UI elements."
+date: "2022-05-01"
+tags: ["Design Engineering", "Education", "Cross-functional"]
+cta: "Helping designers to become engineers' true allies"
+tint: "amber"
+icon: "book"
+stats: ["Since May 2022"]
+---
+
+import { UicruxCta } from "@/components/uicrux/uicrux-cta";
+import { UicruxToc } from "@/components/uicrux/uicrux-toc";
+import { UicruxHero } from "@/components/uicrux/uicrux-hero";
+import { UicruxCredits } from "@/components/uicrux/uicrux-credits";
+import { Section, Subsection } from "@/components/uicrux/section";
+import { PrincipleDivider } from "@/components/principle-divider";
+import { MissionPillarsDemo } from "@/components/uicrux/mission-pillars-demo";
+import { CssCategoriesDemo } from "@/components/uicrux/css-categories-demo";
+import { ElementsCatalogDemo } from "@/components/uicrux/elements-catalog-demo";
+import { NamingMethodologiesDemo } from "@/components/uicrux/naming-methodologies-demo";
+import { FilenameAnatomyDemo } from "@/components/uicrux/filename-anatomy-demo";
+
+<UicruxHero />
+
+I founded UI Crux in May 2022, after a decade of watching the same
+conversation play out in cross-functional teams. A designer would hand
+off a flow. An engineer would open it, ask three small questions, and
+those three questions would expose a much larger gap — not in talent on
+either side, but in shared vocabulary. The team would lose a day.
+Sometimes a sprint. Sometimes the opportunity to ship the thing the way
+it was meant to ship.
+
+UI Crux is my answer to that loss. It's a design engineering platform
+for product designers, PMs, POs, and anyone in a software team whose
+work touches the surface of the product but doesn't always touch the
+code that renders it. The promise is in the tagline I've kept on the
+home page since launch: **enter the realm of design engineering**.
+Become engineers' true ally. Learn how to speak their language. Keep
+designing user-centered products.
+
+<UicruxCta
+  liveUrl="https://uicrux.com"
+  articles={[
+    {
+      title: "UI Crux: Get ahead of other designers and enter Design Engineering",
+      url: "https://medium.com/design-bootcamp/ui-crux-a9d60d1a5e7f",
+      date: "Jun 16, 2023",
+    },
+    {
+      title: "UI Crux: Naming Conventions & Methodologies for Designers",
+      url: "https://medium.com/@andrzej.delgado/ui-crux-naming-conventions-methodologies-for-designers-c5ce9a6b480e",
+      date: "Jun 20, 2023",
+    },
+    {
+      title: "UI Crux: Design Tokens in scale",
+      url: "https://medium.com/@andrzej.delgado/ui-crux-reasonable-and-scalable-design-taxonomy-for-tokens-2e97ac36830",
+      date: "Jun 29, 2023",
+    },
+  ]}
+/>
+
+<UicruxToc />
+
+## TL;DR
+
+<style>{`
+  .tldr-list ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    counter-reset: tldr;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem !important;
+  }
+  .tldr-list li {
+    counter-increment: tldr;
+    position: relative;
+    padding-left: 2.75rem;
+    line-height: 1.7;
+  }
+  .tldr-list li p {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+  }
+  .tldr-list li::before {
+    content: counter(tldr, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-muted-foreground);
+    opacity: 0.55;
+  }
+  .tldr-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+  .tldr-tags span {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    padding: 0.125rem 0.4375rem;
+    background-color: transparent;
+  }
+`}</style>
+
+<div className="tldr-list">
+  <ul>
+    <li>
+      Founded UI Crux in May 2022 — a design engineering platform for product designers, PMs, and POs, built to close the cross-functional vocabulary gap that costs teams days, sometimes sprints.
+      <div className="tldr-tags">
+        <span>Design engineering</span>
+        <span>Cross-functional teams</span>
+      </div>
+    </li>
+    <li>
+      Wrote the CSS for Designers track — <strong>10 lessons</strong> across Fundamentals, Design Computing, Motion, and Visual Effects — so designers can specify decisions that hold up at the implementation layer.
+      <div className="tldr-tags">
+        <span>CSS</span>
+        <span>MDN</span>
+        <span>web.dev</span>
+      </div>
+    </li>
+    <li>
+      Catalogued <strong>39+</strong> UI elements as a shared visual dictionary — the section that closes the most common cross-functional friction, arguments over what to call the thing.
+      <div className="tldr-tags">
+        <span>UI Patterns</span>
+        <span>Design system</span>
+      </div>
+    </li>
+    <li>
+      Documented Naming Conventions — BEM, RSCSS, and SMACSS — with the four principles (self-explanatory, searchable, short, consistent) most teams routinely abandon the moment a deadline tightens.
+      <div className="tldr-tags">
+        <span>BEM</span>
+        <span>RSCSS</span>
+        <span>SMACSS</span>
+      </div>
+    </li>
+    <li>
+      Published three Medium articles in June 2023 covering CSS, Naming, and Design Tokens, and kept the live platform at <a href="https://uicrux.com" target="_blank" rel="noopener noreferrer">uicrux.com</a> running since launch.
+      <div className="tldr-tags">
+        <span>Medium</span>
+        <span>Editorial</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+## Why I built it
+
+Three reasons I've been honest about from day one. First, I needed the
+practice — building UI Crux meant designing, writing, and shipping a
+public artefact every week, and that's a discipline I wanted to keep
+sharp outside of any single employer's surface. Second, the act of
+explaining forced me to revisit concepts I'd been carrying around as
+intuition. The fastest way to discover that you don't really understand
+something is to try to teach it. And third, reciprocity — I leaned
+heavily on the open community when I was a junior designer, some 15+
+years ago, and at some point you owe the next people coming through.
+
+The deeper motive is structural. Product design grew faster than the
+trades around it. New tools, new vocabularies, new abstractions — the
+distance between the designer and the engineer kept widening even as
+the org charts kept putting them in the same standup. I believe
+designers should be the ones who close that gap, because they're often
+the only people in the room who actually look at the rendered product
+in the browser, in production, on a real device, several times a day.
+
+UI Crux organises that closing-the-gap work around four collaboration
+improvements:
+
+<MissionPillarsDemo />
+
+The fourth one — onboarding and delivery time — is the one that
+quietly sells the project to leadership. New cross-functional hires
+become productive faster on a team that shares vocabulary.
+
+<PrincipleDivider variant="chapter" />
+
+## CSS for Designers
+
+The largest section of the platform, and the one I worked on first.
+The pitch isn't "designers should code." It's that designers should
+know what the browser is actually doing when it renders their work, so
+they can make decisions that hold up at the implementation layer
+instead of decisions that survive Figma but break under a media query.
+
+The structure walks from mental model to system to motion to surface,
+in four chapters:
+
+<CssCategoriesDemo />
+
+<Subsection id="fundamentals">Fundamentals</Subsection>
+
+Two lessons — **CSS Basics** and **Layout** — covering how the browser
+parses a stylesheet and how it positions things on a page. This is
+where designers stop seeing the canvas as a pasteboard and start seeing
+it as a flow with constraints. Block, inline, flex, grid, stacking
+context. The reason a margin can collapse. The reason a float can
+escape. None of it is hard. All of it is non-obvious if no one has
+walked you through it.
+
+<Subsection id="design-computing">Design Computing</Subsection>
+
+Three lessons that turn design decisions into computable values:
+**Measurement Units** (px vs em vs rem vs % vs vw vs dp — when each one
+is the right tool), **CSS Functions** (`calc`, `clamp`, `min`, `max`,
+`var` — the gateway drug to scalable token systems), and
+**Responsiveness** (how layouts respond to the device, not just the
+viewport). This chapter is where most designers find the leverage they
+were missing. A token vocabulary is only as good as the math under it.
+
+<Subsection id="advanced-interaction">Advanced Interaction</Subsection>
+
+Two lessons on motion: **Animations** and **Transitions**. The
+distinction matters — transitions interpolate between two declared
+states, animations choreograph keyframes. Most designers I mentor
+specify motion in plain English ("it should bounce a bit") and discover,
+after the build, that "a bit" did a lot of unspoken work. Reading and
+writing the property names — `cubic-bezier`, `transform-origin`,
+`@keyframes` — collapses the loop.
+
+<Subsection id="advanced-visual-effects">Advanced Visual Effects</Subsection>
+
+Three lessons on compositional work — **Blend Modes**, **Gradients**,
+**Filters** — that traditionally pulled designers back into Photoshop
+or Figma exports. Modern CSS does most of it natively, often with
+better fidelity and zero asset weight. When designers know that
+`mix-blend-mode: multiply`, a layered radial gradient, and `filter:
+saturate()` are one-line implementations, they stop specifying what's
+hard and start specifying what's right.
+
+<PrincipleDivider variant="chapter" />
+
+<Section id="ui-elements">UI Elements</Section>
+
+A comprehensive visual catalog of the building blocks of an interface —
+39 elements as of writing — so designers and engineers can point to
+the same picture and use the same name for it.
+
+<ElementsCatalogDemo />
+
+This is the section I'm most often asked to recommend, and the one
+that closes the most cross-functional friction the fastest. Half the
+disagreements I've sat through in design crits and engineering
+standups weren't about the *thing* being designed. They were about
+what to call it. A "drawer" and a "sheet" and a "side panel" and a
+"slide-over" are usually the same component with four cargo-culted
+names attached. Pick one. Document it. Move on.
+
+The visual catalog isn't trying to be a component library. It's trying
+to be the dictionary that comes before any component library — the
+shared mental index every team should be able to assume.
+
+<PrincipleDivider variant="chapter" />
+
+## Naming Conventions
+
+This is the load-bearing section. The chapter most designers skip on
+first read and the one most senior designers come back to after their
+first painful refactor. Naming is where collaboration either compounds
+or collapses.
+
+<NamingMethodologiesDemo />
+
+I cover three CSS methodologies — **BEM**, **RSCSS**, and **SMACSS** —
+with a soft preference for RSCSS because it maps cleanly onto the
+component-first frameworks most product teams ship with (React, Vue,
+Angular, Bootstrap). But the methodology is downstream of the
+principles. Get the principles right and any methodology survives
+contact with a real codebase.
+
+<Subsection id="naming-principles">Principles</Subsection>
+
+Four rules, in order of how often they're violated. **Self-explanatory:**
+the name should describe the thing, not its position or its mood.
+**Searchable:** if a teammate searches for it, they should find it on
+the first try; pick a vocabulary and stay in it. **As short as
+possible:** brevity is a feature, but not at the cost of clarity.
+**Consistent:** the same thing should always have the same name, and
+sequences should follow a meaningful order. None of these are
+controversial. All of them are routinely abandoned the moment a
+deadline tightens.
+
+<Subsection id="categorization">Categorization</Subsection>
+
+How to organise the things you've named. I make a case for components
+over templates, for the **Single Purpose Principle** (each element does
+one thing), and for *minimal* categorisation — one large list with
+shallow grouping rather than a strict functional or complexity
+taxonomy. The atomic-design taxonomy of atoms / molecules / organisms
+sounds clean in a slide deck and produces endless debates in a
+codebase, because most components serve multiple functions and most
+teams disagree about complexity boundaries. Skip it.
+
+<Subsection id="methodologies">CSS Methodologies</Subsection>
+
+A side-by-side of how the same component would be expressed in BEM,
+RSCSS, and SMACSS, with the trade-offs spelled out. BEM is the most
+widely adopted and the easiest to teach; RSCSS is the most ergonomic
+inside a component framework; SMACSS is less a methodology than a
+categorisation style guide. The choice matters less than the
+commitment — pick one, document why, and let the team's pull requests
+enforce it.
+
+<Subsection id="vocabulary">Shared Vocabulary</Subsection>
+
+A glossary. Common CSS classes (`.container`, `.wrapper`, `.row`,
+`.col`, `.navbar`), HTML sectioning elements (`<main>`, `<section>`,
+`<article>`, `<aside>`), and concepts that come up in handoff
+conversations (`viewport`, `clearfix`, `start/end` for RTL, `widget`).
+Designers who can use these terms in conversation skip an entire
+translation step.
+
+<PrincipleDivider variant="chapter" />
+
+## Assets Delivery
+
+Performance starts with planning and ends with the right files in the
+right places. This section is the one designers thank me for after
+their first lighthouse audit and the one engineers thank me for the
+first time they don't have to rename anyone's exports.
+
+<FilenameAnatomyDemo />
+
+<Subsection id="filename-rules">Filename rules</Subsection>
+
+Lowercase only. No spaces. No special characters beyond hyphens,
+underscores, and the `@` density marker. Short names but descriptive
+enough to read without the file open. Underscores group what should
+read as one word; hyphens separate what should read as two. This
+isn't pedantry — it's what makes bulk renames in the IDE and command
+line surgical instead of guesswork. The SEO advantages are a bonus
+the marketing team will quietly take credit for.
+
+<Subsection id="responsive-images">Responsive images</Subsection>
+
+Encode the contract in the filename. Dimensions
+(`-1920x768`), pixel density (`@2x`), theme variant (`-dark`), locale
+(`-en`). Then deliver the right one with `image-set()` for CSS
+backgrounds and `<picture>` with `<source>` for content images. For
+truly conditional delivery — heavy hero video on a 4G phone, say —
+the Network Information API and React's `react-adaptive-hooks` let the
+browser refuse to download something the user can't comfortably
+receive. Designers don't always own the implementation, but they
+should know the implementation exists, because it changes what they're
+allowed to specify.
+
+<Subsection id="modern-formats">Modern formats</Subsection>
+
+WebP became broadly safe in September 2020. AVIF is catching up. Both
+compress dramatically better than JPEG without visible quality loss,
+and both are now exportable from the tools designers already use —
+Sketch natively, Figma and Photoshop via plugins. The pattern I
+recommend is the `<picture>` fallback: serve WebP or AVIF first, JPEG
+last, and let the browser pick. The performance win typically lands
+between 5× and 9× more images delivered in the same payload budget.
+
+<PrincipleDivider variant="chapter" />
+
+## Resources
+
+As a supporting element, I've added a small, opinionated curated list
+rather than a long bibliography.
+The websites I keep returning to (web.dev, MDN, CSS-Tricks). The
+generators that save me from re-doing math (CSS Grid, Flexbox, the
+Filter to Color tool I open-sourced on Codepen, Sitnik & Turner's LCH
+color picker). The compression tools I install on every machine
+(ImageOptim). One book — InVision's *Design Engineering Handbook* —
+and two podcasts on the designer-developer relationship.
+
+<PrincipleDivider variant="chapter" />
+
+<Section id="reflection">What it taught me</Section>
+
+Four years in, UI Crux has become more than a teaching site. It's the
+most consistent feedback loop on my own thinking I've ever had, and
+the artefact I most often point colleagues to when I'm trying to
+explain a way of working rather than a single answer.
+
+A few things have stuck.
+
+**Mentoring scales when it's written down.** I can mentor maybe a
+dozen people directly in any given month. UI Crux has been read by
+multiples of that every week since launch, and the lessons travel
+without me. The leverage on a written, durable resource is
+fundamentally different from the leverage on a one-to-one session, and
+the two complement each other — I refer mentees to UI Crux when I
+recognise a question I've already answered in long form, which buys
+back the time we then spend on the harder question that's actually
+unique to them.
+
+**Cross-functional trust is built on shared vocabulary, not shared
+opinions.** Every healthy product team I've worked on had a private
+internal language. Every dysfunctional one had four. The work of
+making a private language explicit — writing it down, agreeing on it,
+defending it in code review — is unglamorous and load-bearing. UI
+Crux is, in part, an attempt to publish a default language so teams
+can adopt it instead of inventing one from scratch.
+
+**The job of a principal designer is to make the people around them
+more capable.** I have always been driven by a mission to empower
+others and lead them towards their true excellence. Principal designers
+are architects, tastemakers, visionaries, and platformers — their
+actual job description is to make every member of the cross-functional
+team the best version of themselves and to facilitate their
+cooperation. This is the true reason UI Crux was created.
+
+Junior designers grow into the practice. Engineers grow
+into a deeper appreciation of the craft. PMs grow into designers
+they can trust to ship without re-litigating every decision. UI Crux
+is my long-form attempt at that — a free, open resource that levels
+up the room I walk into, before I walk into it.
+
+If you've read this far, open the [platform](https://uicrux.com), walk
+one chapter, and tell me what you think about it.
+
+<PrincipleDivider variant="chapter" />
+
+## Credits
+
+UI Crux owes its shape to two people who, long before I founded it,
+showed me what it looks like when design and engineering actually
+share a vocabulary. Both became inspirations through quiet,
+day-to-day mentorship — passive influence layered on top of personal
+connection — back when we worked together at GoodAI Labs and later
+at Clusterone.
+
+<UicruxCredits />
+
+<PrincipleDivider variant="chapter" />
+
+## Project info
+
+**Role.** Founder, writer, designer, and engineer.
+
+**Expertise.** Design engineering, design–engineering collaboration,
+CSS systems, naming conventions, asset delivery, mentoring at scale.
+
+**Audience.** Product designers, design engineers, PMs, POs, and
+anyone whose work touches the surface of a software product.
+
+**Platforms.** Web.
+
+**Affiliation.** Independent. Free and open since launch.
+
+**Timeline.** Founded May 2022. Three Medium articles published
+June 2023. Continuously refined since.

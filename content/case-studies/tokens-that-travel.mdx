@@ -1,0 +1,41 @@
+---
+title: "Tokens that travel"
+description: "Rebuilding a fragmented design token taxonomy at a Series-C company so it survives team boundaries."
+date: "2026-03-15"
+company: "The Workshop"
+cover: "/images/placeholder-cover.svg"
+tags: ["design systems", "tokens"]
+---
+
+## Context
+
+A 200-person product org with three product teams, two platforms, and
+roughly four flavours of "design tokens" — each one calling itself the
+source of truth. Every theme migration broke something. Every redesign
+re-litigated the same naming arguments.
+
+## The frame
+
+Tokens fail at scale not because the values are wrong but because the
+*meaning* is unstable. We rebuilt the taxonomy in three layers:
+
+1. **Reference** — raw, immutable values (colour ramps, spacing units).
+2. **System** — semantic intent (`surface.elevated`, `text.muted`).
+3. **Component** — bindings owned by the components themselves.
+
+Teams could only consume the layer above their problem. If a designer
+wanted to introduce a new colour, they had to argue at the system layer
+in front of the system owners — not silently in their feature branch.
+
+## Outcome
+
+- Theme migrations dropped from a multi-week effort to a two-day patch.
+- Token count fell by about a third while coverage *increased*.
+- The argument shifted from "what do we call this colour" to "what does
+  this colour mean", which turned out to be a much shorter conversation.
+
+## What I'd do differently
+
+Insist on the three-layer model on day one, not month four. Every team
+that joined late carried a different mental model and we paid for that
+in onboarding cost for a year.
