@@ -114,6 +114,7 @@ function Equalizer({ playing }: { playing: boolean }) {
 
 export function ListeningTile() {
   const [data, setData] = useState<ListeningData | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -125,6 +126,8 @@ export function ListeningTile() {
         if (!cancelled) setData(json);
       } catch {
         /* ignore */
+      } finally {
+        if (!cancelled) setLoaded(true);
       }
     };
     load();
@@ -256,7 +259,14 @@ export function ListeningTile() {
         </ol>
       )}
 
-      {!data && <div className="text-foreground/50 text-xs">Loading…</div>}
+      {!loaded && (
+        <div className="text-foreground/50 text-xs">Loading…</div>
+      )}
+      {loaded && !nowPlaying && playlists.length === 0 && (
+        <div className="text-muted-foreground/60 font-mono text-2xs uppercase tracking-mini">
+          Listening data unavailable
+        </div>
+      )}
     </div>
   );
 }
