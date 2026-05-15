@@ -4,6 +4,8 @@ import * as React from "react";
 import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "next-themes";
 
+import { dockButton } from "@/components/site-dock";
+
 const order = ["light", "dark", "system"] as const;
 type Mode = (typeof order)[number];
 
@@ -36,7 +38,7 @@ export function ThemeToggle() {
       onClick={next}
       aria-label={label}
       title={label}
-      className="text-muted-foreground hover:text-foreground hover:bg-foreground/5 relative inline-flex size-9 items-center justify-center rounded-full transition-colors duration-200 before:absolute before:inset-[-2px] before:content-['']"
+      className={dockButton}
     >
       <Icon className="size-4 opacity-85" aria-hidden />
     </button>

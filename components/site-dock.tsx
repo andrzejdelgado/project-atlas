@@ -13,8 +13,8 @@ import { DockTooltip } from "@/components/dock-tooltip";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/site";
 
-const dockButton =
-  "text-muted-foreground hover:text-foreground relative inline-flex size-9 items-center justify-center rounded-md transition-colors duration-200 before:absolute before:inset-[-2px] before:content-['']";
+export const dockButton =
+  "text-muted-foreground hover:text-foreground hover:bg-foreground/5 active:bg-foreground/10 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 focus-visible:ring-offset-0 relative inline-flex size-9 items-center justify-center rounded-md transition-[color,background-color,transform] duration-150 before:absolute before:inset-[-2px] before:content-['']";
 
 const socialIcons: Record<
   string,
@@ -66,10 +66,9 @@ export function SiteDock() {
             <Link
               href="#"
               aria-label="Download CV (PDF)"
-              className={`${dockButton} gap-1.5 px-2.5 font-mono text-2xs font-medium uppercase tracking-mini`}
+              className={dockButton}
             >
               <FileText className="size-4 opacity-85" aria-hidden="true" />
-              CV
             </Link>
           </DockTooltip>
           <DockTooltip label="Toggle theme">
