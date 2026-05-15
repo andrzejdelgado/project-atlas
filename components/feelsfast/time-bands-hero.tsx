@@ -108,7 +108,7 @@ export function TimeBandsHero() {
       <div
         role="tablist"
         aria-label="Time band"
-        className="border-border/60 bg-secondary/15 mt-7 flex h-12 overflow-hidden rounded-xl border"
+        className="border-border/60 bg-secondary/15 mt-7 grid h-12 grid-cols-4 overflow-hidden rounded-xl border sm:flex"
       >
         {BANDS.map((b) => {
           const tone = TONE[b.tone];
@@ -121,7 +121,7 @@ export function TimeBandsHero() {
               aria-selected={isActive}
               onClick={() => setActive(b.id)}
               className={cn(
-                "group relative flex items-center justify-center transition-all duration-200",
+                "group relative flex items-center justify-center px-1 transition-all duration-200",
                 isActive ? tone.bg : "hover:bg-secondary/40",
               )}
               style={{ flex: b.weight }}
