@@ -334,7 +334,7 @@ export default async function Home() {
                 <li key={entry.slug} className="relative">
                   <Link
                     href={`/case-studies/${entry.slug}`}
-                    className="group relative flex items-center gap-3.5 overflow-hidden px-6 py-4 transition-[background-color] duration-200 hover:bg-background/50 sm:gap-4"
+                    className="group relative flex items-center gap-3.5 overflow-hidden px-5 py-4 transition-[background-color] duration-200 hover:bg-background/50 sm:gap-4"
                   >
                     {/* Left accent bar — appears on hover */}
                     <span
@@ -456,7 +456,7 @@ export default async function Home() {
               return (
                 <li
                   key={stat.label}
-                  className="flex items-center gap-3 px-6"
+                  className="flex items-center gap-3 px-5"
                 >
                   <span
                     aria-hidden
@@ -558,7 +558,7 @@ export default async function Home() {
                 <li key={entry.slug}>
                   <Link
                     href={`/projects/${entry.slug}`}
-                    className="group hover:bg-background/50 flex items-center gap-3.5 px-5 py-4 transition-[background-color] duration-200 sm:px-6 sm:gap-4"
+                    className="group hover:bg-background/50 flex items-center gap-3.5 px-5 py-4 transition-[background-color] duration-200 sm:gap-4"
                   >
                     {brandAsset ? (
                       <span
@@ -641,7 +641,7 @@ export default async function Home() {
             </div>
           </header>
 
-          <ul className="flex flex-col gap-2 px-5 py-5 sm:px-6 sm:py-6">
+          <ul className="flex flex-col gap-2 px-5 py-5 sm:py-6">
             {[...live.events]
               .sort(
                 (a, b) =>
@@ -664,7 +664,7 @@ export default async function Home() {
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group border-border/70 bg-background/40 hover:border-foreground/20 hover:bg-background/60 flex items-center justify-between gap-4 rounded-lg border px-4 py-3 transition-colors duration-200"
+                    className="group border-border/70 bg-background/40 hover:border-foreground/20 hover:bg-background/60 flex items-center justify-between gap-4 rounded-lg border px-5 py-3 transition-colors duration-200"
                   >
                     <div className="flex min-w-0 items-center">
                       <p className="text-foreground truncate text-sm font-medium">
@@ -748,7 +748,7 @@ export default async function Home() {
                         href={a.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="group hover:bg-background/40 flex items-start gap-3 px-6 py-[18px] transition-colors duration-200"
+                        className="group hover:bg-background/40 flex items-start gap-3 px-5 py-[18px] transition-colors duration-200"
                       >
                         {a.image ? (
                           <span className="border-border/70 relative aspect-square size-14 shrink-0 overflow-hidden rounded-md border sm:size-16">
@@ -857,14 +857,14 @@ export default async function Home() {
                 ),
               ).map(([groupName, items]) => (
                 <li key={groupName}>
-                  <p className="text-muted-foreground/70 px-6 pb-1 font-mono text-2xs font-semibold uppercase tracking-mini">
+                  <p className="text-muted-foreground/70 px-5 pb-1 font-mono text-2xs font-semibold uppercase tracking-mini">
                     {groupName}
                   </p>
                   <ul className="space-y-0.5">
                     {items.map(({ text, index }) => (
                       <li
                         key={text}
-                        className="hover:bg-foreground/5 flex items-baseline gap-3 px-6 py-1.5 transition-colors duration-200"
+                        className="hover:bg-foreground/5 flex items-baseline gap-3 px-5 py-1.5 transition-colors duration-200"
                       >
                         <span className="text-muted-foreground/45 w-6 shrink-0 text-[10px] font-medium tabular-nums tracking-wider">
                           {String(index + 1).padStart(2, "0")}
