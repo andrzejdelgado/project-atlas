@@ -224,7 +224,7 @@ export default async function Home() {
               <h1 className="text-2xl font-semibold tracking-tight">
                 {siteConfig.author}
               </h1>
-              <p className="text-muted-foreground mt-0.5 text-sm sm:text-base">
+              <p className="text-muted-foreground mt-0.5 text-xs text-balance sm:text-base">
                 {siteConfig.tagline.replace(/\.$/, "")}
               </p>
               <div className="text-muted-foreground mt-3 flex flex-col gap-2.5 sm:mt-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-2">
