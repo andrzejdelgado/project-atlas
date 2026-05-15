@@ -28,13 +28,13 @@ export function SearchTrigger() {
       aria-label={`Open search palette (${modKey === "⌘" ? "Command K" : "Control K"})`}
       title={`Search · ${modKey} K`}
       onClick={open}
-      className="search-pulse text-muted-foreground hover:text-foreground hover:bg-foreground/5 relative inline-flex h-9 items-center gap-2 rounded-md py-1 pr-1.5 pl-2.5 transition-colors duration-200"
+      className="search-pulse text-muted-foreground hover:text-foreground hover:bg-foreground/5 relative inline-flex size-9 items-center justify-center rounded-md transition-colors duration-200 sm:w-auto sm:justify-start sm:gap-2 sm:py-1 sm:pr-1.5 sm:pl-2.5"
     >
       <Search
         className="size-4 opacity-85 relative z-10"
         aria-hidden="true"
       />
-      <span className="text-foreground/85 inline font-mono text-2xs font-medium uppercase tracking-mini relative z-10">
+      <span className="text-foreground/85 hidden font-mono text-2xs font-medium uppercase tracking-mini relative z-10 sm:inline">
         Search
       </span>
       <kbd
