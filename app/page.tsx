@@ -190,15 +190,43 @@ export default async function Home() {
         {/* Hero */}
         <header className="pt-12 pb-9 sm:pt-20 sm:pb-12">
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
-            <span className="border-border relative block size-20 shrink-0 overflow-hidden rounded-full border sm:size-24">
-              <Image
-                src="/andrzejdelgado.webp"
-                alt={siteConfig.author}
-                fill
-                sizes="96px"
-                priority
-                className="object-cover"
+            <span className="relative block size-30 shrink-0">
+              <span
+                aria-hidden="true"
+                className="bg-border absolute inset-0"
+                style={{
+                  WebkitMaskImage: "url(/avatar-masks/avatar-mask-1.svg)",
+                  maskImage: "url(/avatar-masks/avatar-mask-1.svg)",
+                  WebkitMaskSize: "100% 100%",
+                  maskSize: "100% 100%",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                }}
               />
+              <span
+                className="absolute inset-[1px]"
+                style={{
+                  WebkitMaskImage: "url(/avatar-masks/avatar-mask-1.svg)",
+                  maskImage: "url(/avatar-masks/avatar-mask-1.svg)",
+                  WebkitMaskSize: "100% 100%",
+                  maskSize: "100% 100%",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                }}
+              >
+                <Image
+                  src="/andrzejdelgado.webp"
+                  alt={siteConfig.author}
+                  fill
+                  sizes="120px"
+                  priority
+                  className="object-cover"
+                />
+              </span>
             </span>
             <div className="min-w-0 flex-1">
               <h1 className="text-2xl font-semibold tracking-tight">
