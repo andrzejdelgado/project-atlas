@@ -10,7 +10,6 @@ import {
   MailIcon,
 } from "@/components/brand-icons";
 import { DockTooltip } from "@/components/dock-tooltip";
-import { SearchTrigger } from "@/components/search-trigger";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/site";
 
@@ -38,39 +37,31 @@ export function SiteDock() {
         aria-label="Site"
         className="pointer-events-auto relative mx-auto flex max-w-[828px] items-center justify-between gap-4 px-4 pb-5 sm:px-6 sm:pb-7"
       >
-        <div className="flex items-center gap-1.5">
-          <ul className="hidden items-center gap-1.5 sm:flex">
-            {siteConfig.social.map((s) => {
-              const Icon = socialIcons[s.key];
-              if (!Icon) return null;
-              return (
-                <li key={s.key}>
-                  <DockTooltip label={s.label}>
-                    <Link
-                      href={s.href}
-                      target={
-                        s.href.startsWith("mailto:") ? undefined : "_blank"
-                      }
-                      rel="noreferrer"
-                      aria-label={s.label}
-                      className={dockButton}
-                    >
-                      <Icon className="size-4 opacity-85" />
-                    </Link>
-                  </DockTooltip>
-                </li>
-              );
-            })}
-          </ul>
-          <div className="sm:hidden">
-            <SearchTrigger />
-          </div>
-        </div>
+        <ul className="flex items-center gap-1.5">
+          {siteConfig.social.map((s) => {
+            const Icon = socialIcons[s.key];
+            if (!Icon) return null;
+            return (
+              <li key={s.key}>
+                <DockTooltip label={s.label}>
+                  <Link
+                    href={s.href}
+                    target={
+                      s.href.startsWith("mailto:") ? undefined : "_blank"
+                    }
+                    rel="noreferrer"
+                    aria-label={s.label}
+                    className={dockButton}
+                  >
+                    <Icon className="size-4 opacity-85" />
+                  </Link>
+                </DockTooltip>
+              </li>
+            );
+          })}
+        </ul>
 
         <div className="flex items-center gap-1.5">
-          <div className="hidden sm:block">
-            <SearchTrigger />
-          </div>
           <DockTooltip label="Download CV (PDF)">
             <Link
               href="#"

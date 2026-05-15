@@ -96,6 +96,35 @@ export function ChatModal() {
   }, [open]);
 
   React.useEffect(() => {
+    if (!open) return;
+    const body = document.body;
+    const scrollY = window.scrollY;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overscroll: body.style.overscrollBehavior,
+    };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    body.style.overscrollBehavior = "contain";
+    return () => {
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.left = prev.left;
+      body.style.right = prev.right;
+      body.style.width = prev.width;
+      body.style.overscrollBehavior = prev.overscroll;
+      window.scrollTo(0, scrollY);
+    };
+  }, [open]);
+
+  React.useEffect(() => {
     if (open) {
       const t = setTimeout(() => inputRef.current?.focus(), 30);
       return () => clearTimeout(t);
@@ -108,6 +137,30 @@ export function ChatModal() {
       behavior: "smooth",
     });
   }, [messages, isStreaming]);
+
+  const shellRef = React.useRef<HTMLDivElement>(null);
+  React.useEffect(() => {
+    if (!open) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const update = () => {
+      const el = shellRef.current;
+      if (!el) return;
+      el.style.setProperty("--chat-vv-height", `${vv.height}px`);
+      el.style.setProperty("--chat-vv-offset-top", `${vv.offsetTop}px`);
+      scrollerRef.current?.scrollTo({
+        top: scrollerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    };
+    update();
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
+    return () => {
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
+    };
+  }, [open]);
 
   const submit = (text: string) => {
     const trimmed = text.trim();
@@ -133,22 +186,22 @@ export function ChatModal() {
 
   return (
     <div
+      ref={shellRef}
       role="dialog"
       aria-modal="true"
       aria-label="Chat with Atlas"
-      className="fixed inset-0 z-[100] flex items-start justify-center bg-black/50 px-4 py-[8vh] backdrop-blur-sm sm:px-6"
-      onClick={() => setOpen(false)}
+      className="chat-shell"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) setOpen(false);
+      }}
     >
-      <div
-        className="flex h-full w-full max-w-[828px] flex-col gap-4"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <section className="border-border bg-card relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border shadow-2xl shadow-black/40">
+      <div className="chat-frame">
+        <section className="chat-section">
           <button
             type="button"
             aria-label="Close chat"
             onClick={() => setOpen(false)}
-            className="border-border/70 bg-background/60 text-muted-foreground hover:text-foreground hover:bg-background/80 absolute right-3 top-3 z-10 inline-flex size-8 items-center justify-center rounded-full border backdrop-blur-sm transition-colors sm:hidden"
+            className="border-border/70 bg-background/60 text-muted-foreground hover:text-foreground hover:bg-background/80 active:bg-foreground/10 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-full border backdrop-blur-sm transition-[background-color,color,transform] duration-150 sm:hidden"
           >
             <X className="size-4" aria-hidden />
           </button>
@@ -163,7 +216,7 @@ export function ChatModal() {
 
           <div
             ref={scrollerRef}
-            className="min-h-0 flex-1 overflow-y-auto px-5 py-6 sm:px-6"
+            className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-6 sm:px-6"
           >
             {messages.length === 0 ? (
               <EmptyState onPick={submit} />
@@ -256,9 +309,9 @@ export function ChatModal() {
             </div>
           </form>
 
-          <div className="border-border/60 bg-background/40 text-muted-foreground flex items-center justify-between border-t px-4 py-2 font-mono text-2xs uppercase tracking-mini">
+          <div className="border-border/60 bg-background/40 text-muted-foreground hidden items-center justify-between border-t px-4 py-2 font-mono text-2xs uppercase tracking-mini sm:flex">
             <span>Atlas · powered by Groq · Llama 3.3 70B</span>
-            <span className="hidden items-center gap-1 sm:flex">
+            <span className="flex items-center gap-1">
               <kbd className="border-border/70 rounded border px-1 py-0.5 font-medium">
                 Esc
               </kbd>

@@ -47,42 +47,54 @@ export async function POST(req: Request) {
   }
 
   if (ratelimit) {
-    const { success } = await ratelimit.limit(getClientIp(req));
-    if (!success) {
-      return new Response(
-        "You've hit the hourly message limit. Try again later.",
-        { status: 429 },
-      );
+    try {
+      const { success } = await ratelimit.limit(getClientIp(req));
+      if (!success) {
+        return new Response(
+          "You've hit the hourly message limit. Try again later.",
+          { status: 429 },
+        );
+      }
+    } catch (err) {
+      console.warn("[chat] rate-limit unavailable, serving request:", err);
     }
   }
 
-  const { messages }: { messages: UIMessage[] } = await req.json();
+  try {
+    const { messages }: { messages: UIMessage[] } = await req.json();
 
-  const trimmed = messages.slice(-12).map((m) => {
-    if (Array.isArray(m.parts)) {
-      return {
-        ...m,
-        parts: m.parts.map((p) =>
-          p.type === "text" ? { ...p, text: p.text.slice(0, 2000) } : p,
-        ),
-      };
-    }
-    return m;
-  });
-
-  const result = streamText({
-    model: groq("llama-3.3-70b-versatile"),
-    system: SYSTEM_PROMPT,
-    messages: await convertToModelMessages(trimmed),
-    maxOutputTokens: 600,
-    temperature: 0.4,
-  });
-
-  return result.toUIMessageStreamResponse({
-    messageMetadata: ({ part }) => {
-      if (part.type === "finish") {
-        return { totalTokens: part.totalUsage?.totalTokens ?? null };
+    const trimmed = messages.slice(-12).map((m) => {
+      if (Array.isArray(m.parts)) {
+        return {
+          ...m,
+          parts: m.parts.map((p) =>
+            p.type === "text" ? { ...p, text: p.text.slice(0, 2000) } : p,
+          ),
+        };
       }
-    },
-  });
+      return m;
+    });
+
+    const result = streamText({
+      model: groq("llama-3.3-70b-versatile"),
+      system: SYSTEM_PROMPT,
+      messages: await convertToModelMessages(trimmed),
+      maxOutputTokens: 600,
+      temperature: 0.4,
+    });
+
+    return result.toUIMessageStreamResponse({
+      messageMetadata: ({ part }) => {
+        if (part.type === "finish") {
+          return { totalTokens: part.totalUsage?.totalTokens ?? null };
+        }
+      },
+    });
+  } catch (err) {
+    console.error("[chat] request failed:", err);
+    return new Response("Chat is temporarily unavailable. Try again shortly.", {
+      status: 502,
+      headers: { "content-type": "text/plain; charset=utf-8" },
+    });
+  }
 }

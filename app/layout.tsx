@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
-import { AmbientBackdrop } from "@/components/ambient-backdrop";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteDock } from "@/components/site-dock";
 import { SiteSignature } from "@/components/site-signature";
-import { CommandPalette } from "@/components/command-palette";
 import { ChatModal } from "@/components/chat-modal";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -65,13 +63,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AmbientBackdrop />
-          <main className="mx-auto w-full max-w-[828px] flex-1 px-4 pb-32 sm:px-6">
+          <main className="mx-auto w-full max-w-[60ch] flex-1 px-4 pb-32 sm:px-6">
             {children}
             <SiteSignature />
           </main>
           <SiteDock />
-          <CommandPalette />
           <ChatModal />
           <Analytics />
         </ThemeProvider>

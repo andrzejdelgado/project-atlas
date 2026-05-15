@@ -17,3 +17,10 @@ export const PROJECT_BRAND_ASSETS: Record<string, ProjectBrandAsset> = {
     className: "size-6 rounded-full object-cover",
   },
 };
+
+export const CASE_STUDY_BRAND_ASSETS: Record<string, ProjectBrandAsset> = {
+  "tokens-that-travel": {
+    src: "/case-studies/tokens-that-travel.svg",
+    className: "size-6",
+  },
+};
