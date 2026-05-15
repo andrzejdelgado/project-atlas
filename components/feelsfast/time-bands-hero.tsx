@@ -18,7 +18,7 @@ const BANDS: Band[] = [
   {
     id: "instant",
     label: "Instant",
-    range: "0 – 100 ms",
+    range: "0–100ms",
     pattern: "Pre-action feedback. No spinner.",
     tone: "violet",
     weight: 18,
@@ -26,7 +26,7 @@ const BANDS: Band[] = [
   {
     id: "responsive",
     label: "Responsive",
-    range: "100 ms – 1 s",
+    range: "100ms–1s",
     pattern: "Stale-while-revalidate. Cancellation.",
     tone: "blue",
     weight: 24,
@@ -34,7 +34,7 @@ const BANDS: Band[] = [
   {
     id: "engaged",
     label: "Engaged",
-    range: "1 – 10 s",
+    range: "1–10s",
     pattern: "Skeleton. Determinate progress. Pacing.",
     tone: "amber",
     weight: 30,
@@ -42,7 +42,7 @@ const BANDS: Band[] = [
   {
     id: "long",
     label: "Long",
-    range: "10 s+",
+    range: "10s+",
     pattern: "Background work. Tool-call transparency.",
     tone: "coral",
     weight: 28,
@@ -154,7 +154,7 @@ export function TimeBandsHero() {
         {BANDS.map((b) => (
           <div
             key={b.id}
-            className="text-muted-foreground/55 px-1 text-center font-mono text-2xs tabular-nums"
+            className="text-muted-foreground/55 px-0.5 text-center font-mono text-2xs tabular-nums whitespace-nowrap"
           >
             {b.range}
           </div>

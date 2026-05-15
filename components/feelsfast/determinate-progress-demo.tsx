@@ -86,7 +86,7 @@ export function DeterminateProgressDemo() {
           const tone = TONE[lane.tone];
           return (
             <div key={lane.id} className="flex flex-col gap-2">
-              <div className="flex items-baseline justify-between">
+              <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
                 <span className={cn("font-mono text-xs", tone.text)}>
                   {lane.label}
                 </span>

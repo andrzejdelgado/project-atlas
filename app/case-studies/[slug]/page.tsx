@@ -50,7 +50,7 @@ export default async function CaseStudyPage({
 
   return (
     <article className="mx-auto w-full max-w-[840px] py-4 sm:py-6 lg:py-8">
-      <PageActions backHref="/case-studies" />
+      <PageActions backHref="/" />
       <header>
         <p className="text-muted-foreground text-xs tracking-wider uppercase tabular-nums">
           <time dateTime={date}>{fmt.format(new Date(date))}</time>

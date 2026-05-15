@@ -48,7 +48,7 @@ export default async function ProjectPage({
 
   return (
     <article className="w-full py-4 sm:py-6 lg:py-8">
-      <PageActions backHref="/projects" />
+      <PageActions backHref="/" />
       <header>
         <p className="text-muted-foreground text-xs tracking-wider uppercase tabular-nums">
           <time dateTime={date}>{fmt.format(new Date(date))}</time>
