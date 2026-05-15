@@ -32,7 +32,7 @@ export function SiteDock() {
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40">
       <div
         aria-hidden
-        className="from-background via-background/75 pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t to-transparent"
+        className="from-background via-background/75 pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t to-transparent sm:h-48"
       />
       <nav
         aria-label="Site"
