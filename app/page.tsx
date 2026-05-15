@@ -204,7 +204,7 @@ export default async function Home() {
               <h1 className="text-2xl font-semibold tracking-tight">
                 {siteConfig.author}
               </h1>
-              <p className="text-muted-foreground mt-0.5 text-[13.5px] text-balance sm:text-base">
+              <p className="text-muted-foreground mt-1.5 font-mono text-2xs uppercase">
                 {siteConfig.tagline.replace(/\.$/, "")}
               </p>
             </div>
