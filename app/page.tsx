@@ -153,7 +153,7 @@ function TileHeader({
   return (
     <header
       className={cn(
-        "border-border/60 -mx-5 -mt-5 mb-5 flex items-center justify-between gap-3 border-b px-5 py-4 sm:-mx-6 sm:-mt-6 sm:mb-6 sm:px-6 sm:py-5",
+        "border-border/60 -mx-5 -mt-5 mb-5 flex items-center justify-between gap-3 border-b px-4 py-4 sm:-mx-6 sm:-mt-6 sm:mb-6 sm:px-5 sm:py-5",
         className,
       )}
     >
@@ -298,7 +298,7 @@ export default async function Home() {
                 "linear-gradient(in oklab to right, transparent, hsl(290 80% 65% / 0.6) 25%, hsl(25 90% 60% / 0.7) 55%, hsl(175 60% 60% / 0.6) 80%, transparent)",
             }}
           />
-          <header className="border-border/60 flex items-center justify-between gap-3 border-b px-5 py-4 sm:px-6 sm:py-5">
+          <header className="border-border/60 flex items-center justify-between gap-3 border-b px-4 py-4 sm:px-5 sm:py-5">
             <div className="flex items-center gap-2">
               <Lock
                 className="text-foreground size-4 opacity-85"
@@ -417,7 +417,7 @@ export default async function Home() {
         {/* Mentoring stats */}
         <Tile span="col-span-6 md:col-span-2">
           <TileHeader icon={Compass} title="Mentoring" />
-          <ul className="-mx-5 grid grid-cols-1 gap-3.5 pb-5 sm:-mx-6 sm:pb-6">
+          <ul className="-mx-5 grid grid-cols-1 gap-4 pb-5 sm:-mx-6 sm:pb-6">
             {[
               {
                 icon: Rocket,
@@ -626,7 +626,7 @@ export default async function Home() {
 
         {/* Events */}
         <Tile span="col-span-6" padded={false}>
-          <header className="border-border/60 flex items-center justify-between gap-3 border-b px-5 py-4 sm:px-6 sm:py-5">
+          <header className="border-border/60 flex items-center justify-between gap-3 border-b px-4 py-4 sm:px-5 sm:py-5">
             <div className="flex items-center gap-2">
               <Calendar
                 className="text-foreground size-4 opacity-85"
@@ -664,7 +664,7 @@ export default async function Home() {
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group border-border/70 bg-background/40 hover:border-foreground/20 hover:bg-background/60 flex items-center justify-between gap-4 rounded-lg border px-5 py-3 transition-colors duration-200"
+                    className="group border-border/70 bg-background/40 hover:border-foreground/20 hover:bg-background/60 flex items-center justify-between gap-4 rounded-lg border px-5 py-4 transition-colors duration-200"
                   >
                     <div className="flex min-w-0 items-center">
                       <p className="text-foreground truncate text-sm font-medium">
@@ -710,7 +710,7 @@ export default async function Home() {
                   "linear-gradient(in oklab to right, transparent, hsl(290 80% 65% / 0.6) 25%, hsl(25 90% 60% / 0.7) 55%, hsl(175 60% 60% / 0.6) 80%, transparent)",
               }}
             />
-            <header className="border-border/60 flex items-center justify-between gap-3 border-b px-5 py-4 sm:px-6 sm:py-5">
+            <header className="border-border/60 flex items-center justify-between gap-3 border-b px-4 py-4 sm:px-5 sm:py-5">
               <div className="flex items-center gap-2">
                 <MediumIcon
                   className="size-4 opacity-85"
@@ -748,7 +748,7 @@ export default async function Home() {
                         href={a.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="group hover:bg-background/40 flex items-start gap-3 px-5 py-[18px] transition-colors duration-200"
+                        className="group hover:bg-background/40 flex items-start gap-3 px-5 py-4 transition-colors duration-200"
                       >
                         {a.image ? (
                           <span className="border-border/70 relative aspect-square size-14 shrink-0 overflow-hidden rounded-md border sm:size-16">
@@ -822,7 +822,7 @@ export default async function Home() {
 
         {/* Guiding principles */}
         <Tile span="col-span-6 md:col-span-3" padded={false}>
-          <header className="border-border/60 flex items-center justify-between gap-3 border-b px-5 py-4 sm:px-6 sm:py-5">
+          <header className="border-border/60 flex items-center justify-between gap-3 border-b px-4 py-4 sm:px-5 sm:py-5">
             <div className="flex items-center gap-2">
               <ScrollText
                 className="text-foreground size-4 opacity-85"
@@ -864,7 +864,7 @@ export default async function Home() {
                     {items.map(({ text, index }) => (
                       <li
                         key={text}
-                        className="hover:bg-foreground/5 flex items-baseline gap-3 px-5 py-1.5 transition-colors duration-200"
+                        className="hover:bg-foreground/5 flex items-baseline gap-3 px-5 py-4 transition-colors duration-200"
                       >
                         <span className="text-muted-foreground/45 w-6 shrink-0 text-[10px] font-medium tabular-nums tracking-wider">
                           {String(index + 1).padStart(2, "0")}
@@ -894,7 +894,7 @@ export default async function Home() {
             {reading.map((book) => (
               <li
                 key={book.title}
-                className="flex items-baseline justify-between gap-3 px-6 py-2 first:pt-0 last:pb-0"
+                className="flex items-baseline justify-between gap-3 px-5 py-2 first:pt-0 last:pb-0"
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-foreground flex items-center gap-1.5 truncate text-sm font-medium">
