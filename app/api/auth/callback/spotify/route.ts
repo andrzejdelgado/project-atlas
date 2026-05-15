@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const REDIRECT_URI = "http://127.0.0.1:3000/api/auth/callback/spotify";
-
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
   const error = request.nextUrl.searchParams.get("error");
@@ -17,10 +15,13 @@ export async function GET(request: NextRequest) {
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
   if (!clientId || !clientSecret) {
     return new NextResponse(
-      "Missing SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET in .env.local",
+      "Missing SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET",
       { status: 500 },
     );
   }
+
+  const origin = new URL(request.url).origin;
+  const redirectUri = `${origin}/api/auth/callback/spotify`;
 
   const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
 
@@ -33,7 +34,7 @@ export async function GET(request: NextRequest) {
     body: new URLSearchParams({
       grant_type: "authorization_code",
       code,
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: redirectUri,
     }),
     cache: "no-store",
   });
