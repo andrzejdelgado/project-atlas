@@ -147,6 +147,14 @@
     @apply font-sans;
   }
 
+  /* Clip horizontal overflow so edge-to-edge full-bleed elements
+     (Saturn Heavy TOC etc.) don't trigger a scrollbar from the
+     ~17px scrollbar reservation in 100vw. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -420,4 +428,58 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Saturn Heavy case-study TL;DR — numbered list with mono-style counters and
+   tag chips. Lifted from an inline <style> block in the MDX so React doesn't
+   trip on script-tag-style children inside a client-rendered component. */
+.tldr-list ol {
+  list-style: none !important;
+  padding-left: 0 !important;
+  counter-reset: tldr;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem !important;
+}
+.tldr-list li {
+  counter-increment: tldr;
+  position: relative;
+  padding-left: 2.75rem;
+  line-height: 1.7;
+}
+.tldr-list li p {
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+.tldr-list li::before {
+  content: counter(tldr, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted-foreground);
+  opacity: 0.55;
+}
+.tldr-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+.tldr-tags span {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.4375rem;
+  background-color: transparent;
 }

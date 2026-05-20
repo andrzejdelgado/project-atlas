@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { ArrowUpRight, BookOpen, Headphones, ScrollText } from "lucide-react";
 
+import { EditableArticle } from "@/components/editable-article";
 import { MdxContent } from "@/components/mdx-content";
 import { PageActions } from "@/components/page-actions";
 import { ListeningTile } from "@/components/listening-tile";
 import { Tile, TileHeader } from "@/components/tile";
 import { getAbout } from "@/lib/content";
-import { principles, reading } from "@/lib/dashboard";
+import { principles, reading, skills } from "@/lib/dashboard";
 
 const about = getAbout();
 
@@ -20,15 +21,43 @@ export default function AboutPage() {
     <div className="w-full py-4 sm:py-6 lg:py-8">
       <PageActions backHref="/" />
       <div className="mx-auto max-w-[60ch]">
-        <header className="mb-8">
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            {about?.frontmatter.title ?? "About"}
-          </h1>
-        </header>
-        <div className="prose-text">
-          <MdxContent kind="about" />
-        </div>
+        <EditableArticle sourcePath="about.mdx">
+          <header className="mb-8">
+            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              {about?.frontmatter.title ?? "About"}
+            </h1>
+          </header>
+          <div className="prose-text">
+            <MdxContent kind="about" />
+          </div>
+        </EditableArticle>
       </div>
+
+      {/* Skills */}
+      <section className="mt-16 sm:mt-20">
+        <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
+        <div className="border-border bg-card/40 mt-4 rounded-2xl border p-5 sm:p-6">
+          <div className="space-y-7">
+            {skills.map((cat) => (
+              <div key={cat.label}>
+                <h3 className="text-muted-foreground font-mono text-2xs uppercase tracking-mini">
+                  {cat.label}
+                </h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {cat.items.map((item) => (
+                    <span
+                      key={item}
+                      className="border-border/60 bg-secondary/60 text-foreground/90 inline-flex items-center rounded-full border px-3 py-1 text-sm"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Guiding principles */}
       <section className="mt-16 sm:mt-20">

@@ -20,14 +20,10 @@ export const ATLAS_BRIEF = `
 
 # Case studies (live on this site)
 
-- "Tokens that travel" — /case-studies/tokens-that-travel — a token system
-  that survives platform jumps and theme drift.
-- "The long horizon" — /case-studies/long-horizon-design — designing for
-  multi-year systems work without losing momentum.
-- "From IC to staff" — /case-studies/from-ic-to-staff — the messy middle of
-  the senior-to-staff jump and what actually moved the needle.
-- "Patterns over policy" — /case-studies/patterns-over-policy — why
-  reusable patterns beat written guidelines for design ops at scale.
+- "Saturn Heavy" — /case-studies/saturn-heavy — fifteen months leading a
+  multi-brand design system that replaced a legacy platform, scaled the
+  team from one to five, grew engineering from fourteen to one hundred-plus,
+  and shipped real-user mobile gains of −54% LCP, −71% FCP, −79% TTFB.
 
 # Mentoring
 

@@ -19,8 +19,8 @@ export const PROJECT_BRAND_ASSETS: Record<string, ProjectBrandAsset> = {
 };
 
 export const CASE_STUDY_BRAND_ASSETS: Record<string, ProjectBrandAsset> = {
-  "tokens-that-travel": {
-    src: "/case-studies/tokens-that-travel.svg",
-    className: "size-6",
+  "saturn-heavy": {
+    src: "/case-studies/saturn-heavy.svg",
+    className: "size-8",
   },
 };

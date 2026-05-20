@@ -77,6 +77,50 @@ export const reading = [
   },
 ];
 
+export const skills: { label: string; items: string[] }[] = [
+  {
+    label: "Skills",
+    items: [
+      "People management",
+      "Design leadership",
+      "Design Engineering",
+      "UX strategy",
+      "Agile design",
+      "AI",
+      "Vibe coding",
+      "Content design",
+      "Stakeholder relationship management",
+    ],
+  },
+  {
+    label: "Tools",
+    items: [
+      "Claude Code",
+      "Cursor",
+      "Codex",
+      "GitLab",
+      "GitHub",
+      "Jira",
+      "Gemini",
+      "Figma",
+    ],
+  },
+  {
+    label: "Known for",
+    items: [
+      "Collaboration",
+      "Communication",
+      "Organization",
+      "Process",
+      "Structure",
+      "Clarity",
+      "Creativity",
+      "Strategy",
+      "Adaptability",
+    ],
+  },
+];
+
 export const watching = [
   { title: "Perfect Days", year: 2023, rating: "★★★★½" },
   { title: "The Zone of Interest", year: 2023, rating: "★★★★" },
@@ -146,13 +190,6 @@ export const live = {
       cta: "Writing the next chapter",
       href: "https://medium.com/@andrzej.delgado",
       tint: "30 90% 60%",
-    },
-    {
-      key: "tokens",
-      name: "Token taxonomy v2",
-      cta: "Three-layer system, evolving",
-      href: "/case-studies/tokens-that-travel",
-      tint: "210 85% 60%",
     },
   ],
   events: [

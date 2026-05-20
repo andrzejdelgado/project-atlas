@@ -1,0 +1,44 @@
+{
+  "tokens": [
+    {
+      "id": "QQsco7D_-Nia6zxAFfZ65TLpYNcz76ll",
+      "recipient": "Jane Smith",
+      "company": "Acme Corp",
+      "type": "reusable",
+      "issuedAt": "2026-05-20T12:00:57.039Z",
+      "expiresAt": "2026-08-18T12:00:57.038Z",
+      "revoked": false,
+      "usedAt": null
+    },
+    {
+      "id": "9aJt4fYf6jBqXy9MPFypmVZ9wNM0fDaG",
+      "recipient": "Burn Test",
+      "company": "Self-test",
+      "type": "one-time",
+      "issuedAt": "2026-05-20T12:26:36.418Z",
+      "expiresAt": "2026-05-21T12:26:36.416Z",
+      "revoked": false,
+      "usedAt": "2026-05-20T12:26:55.604Z"
+    },
+    {
+      "id": "WiX2Yda4ADVjhVjo5_ZKhJWW_2iJxvoA",
+      "recipient": "Visual Test",
+      "company": "Acme",
+      "type": "reusable",
+      "issuedAt": "2026-05-20T12:27:16.152Z",
+      "expiresAt": "2026-08-18T12:27:16.150Z",
+      "revoked": false,
+      "usedAt": null
+    },
+    {
+      "id": "b1so1YkRML07MqgXri5WQSMFjVyyn1Ek",
+      "recipient": "Case Study Spectator",
+      "company": "Potential Employer",
+      "type": "reusable",
+      "issuedAt": "2026-05-20T15:50:38.042Z",
+      "expiresAt": "2026-08-18T15:50:38.041Z",
+      "revoked": false,
+      "usedAt": null
+    }
+  ]
+}

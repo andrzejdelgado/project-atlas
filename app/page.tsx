@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -19,7 +20,7 @@ import {
   PROJECT_BRAND_ASSETS,
 } from "@/lib/project-brand-assets";
 import { MalagaWeather } from "@/components/malaga-weather";
-import { MediumIcon } from "@/components/brand-icons";
+import { LinkedinIcon, MediumIcon } from "@/components/brand-icons";
 import { getAllCaseStudies, getAllProjects } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 import { mentorship, live } from "@/lib/dashboard";
@@ -89,6 +90,86 @@ const CASE_STUDY_TINTS = [
   "10 85% 65%",
 ];
 
+// Career timeline, sorted by start date desc. Date labels are pre-formatted
+// for display (the section uses font-mono uppercase); `dateRange` carries
+// the ISO-ish slash form for the <time> element's machine-readable
+// `dateTime` attribute.
+const EXPERIENCES: Array<{
+  dateLabel: string;
+  dateRange: string;
+  title: string;
+  company: string;
+  logo: string;
+  /** When true, render the logo on a disc inside the icon-plate instead
+   *  of directly on the plate's tinted surface. Pair with `discColor` to
+   *  pick the disc background (defaults to white). */
+  whiteDisc?: boolean;
+  /** CSS color string for the inner disc. Defaults to white. */
+  discColor?: string;
+  /** Extra className applied to the logo <Image> — used for per-mark
+   *  border-radius tweaks (e.g. round a circular logo). */
+  logoClassName?: string;
+}> = [
+  {
+    dateLabel: "2020 — Now",
+    dateRange: "2020/",
+    title: "Principal Product Designer",
+    company: "The Workshop",
+    logo: "/images/logos/the-workshop.png",
+    whiteDisc: true,
+    discColor: "#029bc7",
+  },
+  {
+    dateLabel: "2018 — 2020",
+    dateRange: "2018/2020",
+    title: "Senior UX/UI Designer",
+    company: "Clusterone",
+    logo: "/images/logos/clusterone.png",
+    logoClassName: "rounded-full",
+  },
+  {
+    dateLabel: "2017 — 2018",
+    dateRange: "2017/2018",
+    title: "UX/UI Designer",
+    company: "Good AI Lab",
+    logo: "/images/logos/good-ai-lab.png",
+    logoClassName: "rounded-[8px]",
+  },
+  {
+    dateLabel: "2009 — 2020",
+    dateRange: "2009/2020",
+    title: "Founder & CEO",
+    company: "Delgado Design",
+    logo: "/images/logos/delgado-design.png",
+    whiteDisc: true,
+    discColor: "#212024",
+  },
+];
+
+// Explicit homepage metadata so the root URL ships a strong canonical title
+// and description instead of inheriting the layout fallback. The title
+// template (%s — Andrzej Delgado) only applies to non-default titles, so
+// we use `absolute` to land exactly the string we want in <title>.
+export const metadata: Metadata = {
+  title: {
+    absolute: `${siteConfig.author} — ${siteConfig.jobTitle}`,
+  },
+  description: siteConfig.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: `${siteConfig.author} — ${siteConfig.jobTitle}`,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.author} — ${siteConfig.jobTitle}`,
+    description: siteConfig.description,
+  },
+};
+
 export default async function Home() {
   const allProjects = getAllProjects();
   const allCaseStudies = getAllCaseStudies();
@@ -124,7 +205,7 @@ export default async function Home() {
       slug: c.slug,
       href: `/case-studies/${c.slug}`,
       title: c.frontmatter.title,
-      description: c.frontmatter.description ?? "",
+      description: c.frontmatter.cta ?? c.frontmatter.description ?? "",
       date: c.frontmatter.date,
       year: new Date(c.frontmatter.date).getFullYear(),
       mark: fallbackMark,
@@ -324,6 +405,88 @@ export default async function Home() {
               </li>
             ))}
           </ol>
+        </section>
+
+        {/* Experience */}
+        <section className="mt-12 sm:mt-16">
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Experience
+          </h2>
+          <ol className="mt-4 flex list-none flex-col p-0">
+            {EXPERIENCES.map((exp, i) => (
+              <li
+                key={`${exp.title}@${exp.company}`}
+                className="animate-in fade-in slide-in-from-bottom-2"
+                style={{
+                  animationDuration: "300ms",
+                  animationDelay: `${i * 60}ms`,
+                  animationFillMode: "both",
+                }}
+              >
+                <div className="-mx-3 flex items-center gap-3 rounded-2xl border border-transparent px-3 py-4 sm:-mx-4 sm:gap-6 sm:px-4">
+                  <span
+                    aria-hidden
+                    className="text-muted-foreground/55 hidden font-mono text-2xs uppercase tracking-mini tabular-nums sm:inline sm:w-8 sm:shrink-0"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="border-border/60 bg-secondary/60 relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg border"
+                  >
+                    {exp.whiteDisc ? (
+                      <span
+                        className="flex size-7 items-center justify-center rounded-full"
+                        style={{ backgroundColor: exp.discColor ?? "#ffffff" }}
+                      >
+                        <Image
+                          src={exp.logo}
+                          alt=""
+                          width={18}
+                          height={18}
+                          aria-hidden="true"
+                          className="object-contain"
+                        />
+                      </span>
+                    ) : (
+                      <Image
+                        src={exp.logo}
+                        alt=""
+                        width={28}
+                        height={28}
+                        aria-hidden="true"
+                        className={`size-7 object-contain ${exp.logoClassName ?? ""}`}
+                      />
+                    )}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base font-medium tracking-tight sm:text-lg">
+                      {exp.title}
+                    </h3>
+                    <p className="text-muted-foreground mt-1.5 font-mono text-2xs uppercase tracking-mini">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <time
+                    dateTime={exp.dateRange}
+                    className="text-muted-foreground hidden text-xs tabular-nums sm:block sm:shrink-0"
+                  >
+                    {exp.dateLabel}
+                  </time>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <a
+            href="https://www.linkedin.com/in/andrzejdelgado/"
+            target="_blank"
+            rel="noreferrer"
+            className="cta-button mt-6"
+          >
+            <LinkedinIcon className="size-4 opacity-85" aria-hidden="true" />
+            See more on LinkedIn
+            <ArrowUpRight className="size-4 opacity-85" aria-hidden="true" />
+          </a>
         </section>
 
         {/* Writing (Medium) */}
