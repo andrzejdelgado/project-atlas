@@ -62,6 +62,17 @@
       "revoked": false,
       "usedAt": "2026-05-20T16:40:25.356Z",
       "pin": "093195"
+    },
+    {
+      "id": "fEBaMuJRrHNlIYvmsw-olpdAvTIOxSYg",
+      "recipient": "Ilona Delgado",
+      "company": "Legal Venue",
+      "type": "one-time",
+      "issuedAt": "2026-05-20T17:25:04.659Z",
+      "expiresAt": "2026-05-27T17:25:04.655Z",
+      "revoked": false,
+      "usedAt": null,
+      "pin": "344036"
     }
   ]
 }
