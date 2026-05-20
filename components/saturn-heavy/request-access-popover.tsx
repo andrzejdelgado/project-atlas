@@ -82,7 +82,7 @@ export function RequestAccessPopover({ slug, reason }: Props) {
           render={
             <button
               type="button"
-              className="bg-foreground text-background hover:bg-foreground/90 inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors"
+              className="bg-foreground text-background hover:bg-foreground/90 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors sm:w-auto sm:justify-start"
             />
           }
         >

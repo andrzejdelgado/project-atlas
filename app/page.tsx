@@ -464,7 +464,16 @@ export default async function Home() {
                       {exp.title}
                     </h3>
                     <p className="text-muted-foreground mt-1.5 font-mono text-2xs uppercase tracking-mini">
-                      {exp.company}
+                      <span>{exp.company}</span>
+                      <span aria-hidden className="mx-1.5 opacity-60 sm:hidden">
+                        ·
+                      </span>
+                      <time
+                        dateTime={exp.dateRange}
+                        className="sm:hidden"
+                      >
+                        {exp.dateLabel}
+                      </time>
                     </p>
                   </div>
                   <time

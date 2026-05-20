@@ -77,7 +77,7 @@ export function RedeemPinPopover({ slug }: Props) {
         render={
           <button
             type="button"
-            className="border-border bg-background text-foreground hover:bg-foreground/5 inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors"
+            className="border-border bg-background text-foreground hover:bg-foreground/5 inline-flex w-full items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors sm:w-auto sm:justify-start"
           />
         }
       >

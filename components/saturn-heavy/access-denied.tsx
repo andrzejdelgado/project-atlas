@@ -76,9 +76,9 @@ export function ShareAccessDenied({ reason, slug = "saturn-heavy" }: Props) {
       <p className="text-muted-foreground mt-3 max-w-prose text-sm leading-relaxed sm:text-base">
         {copy.body}
       </p>
-      <div className="mt-6 flex flex-wrap items-center gap-3">
+      <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
         <RequestAccessPopover slug={slug} reason={reason} />
-        <div className="ml-auto">
+        <div className="sm:ml-auto">
           <RedeemPinPopover slug={slug} />
         </div>
       </div>
