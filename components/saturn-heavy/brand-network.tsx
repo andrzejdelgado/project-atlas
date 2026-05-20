@@ -107,12 +107,12 @@ export function BrandNetwork() {
             }}
           >
             <span
-              className="border-border/70 bg-background/40 text-foreground/85 inline-flex items-center gap-1.5 rounded-md border px-2 py-1 font-mono text-2xs uppercase tracking-mini"
+              className="border-border/70 bg-background/40 text-foreground/85 inline-flex items-center gap-1.5 rounded-md border px-2 py-1 font-mono text-2xs uppercase tracking-mini sm:gap-[7px] sm:px-[9.2px] sm:py-[4.6px] sm:text-[0.72rem]"
               title={b.name}
             >
               <span
                 aria-hidden="true"
-                className="size-1.5 shrink-0 rounded-full"
+                className="size-1.5 shrink-0 rounded-full sm:size-[7px]"
                 style={{ backgroundColor: `oklch(0.65 0.16 ${b.hue})` }}
               />
               {b.code}

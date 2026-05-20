@@ -40,7 +40,7 @@ export const siteConfig = {
     "OKLCH",
     "Next.js portfolio",
   ],
-  email: "hey@andrzej.so",
+  email: "hey@delgado.vc",
   social: [
     {
       key: "github",
@@ -62,6 +62,6 @@ export const siteConfig = {
       label: "ADPList",
       href: "https://adplist.org/mentors/andrzej-delgado",
     },
-    { key: "email", label: "Email", href: "mailto:hey@andrzej.so" },
+    { key: "email", label: "Email", href: "mailto:hey@delgado.vc" },
   ],
 } as const;

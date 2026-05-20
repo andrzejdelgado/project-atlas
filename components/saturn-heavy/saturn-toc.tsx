@@ -20,7 +20,31 @@ const CHAPTERS: Chapter[] = [
 
 export function SaturnToc() {
   const [active, setActive] = React.useState<string>(CHAPTERS[0].id);
+  const [edges, setEdges] = React.useState({ canLeft: false, canRight: true });
   const listRef = React.useRef<HTMLOListElement>(null);
+
+  React.useEffect(() => {
+    const container = listRef.current;
+    if (!container) return;
+    const compute = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      const canLeft = scrollLeft > 1;
+      const canRight = scrollLeft + clientWidth < scrollWidth - 1;
+      setEdges((prev) =>
+        prev.canLeft === canLeft && prev.canRight === canRight
+          ? prev
+          : { canLeft, canRight },
+      );
+    };
+    compute();
+    container.addEventListener("scroll", compute, { passive: true });
+    const ro = new ResizeObserver(compute);
+    ro.observe(container);
+    return () => {
+      container.removeEventListener("scroll", compute);
+      ro.disconnect();
+    };
+  }, []);
 
   React.useEffect(() => {
     const ids = CHAPTERS.map((c) => c.id);
@@ -120,11 +144,17 @@ export function SaturnToc() {
       </ol>
       <span
         aria-hidden="true"
-        className="from-background pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r to-transparent sm:hidden"
+        className={cn(
+          "from-background pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r to-transparent transition-opacity duration-200 sm:hidden",
+          edges.canLeft ? "opacity-100" : "opacity-0",
+        )}
       />
       <span
         aria-hidden="true"
-        className="from-background pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l to-transparent sm:hidden"
+        className={cn(
+          "from-background pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l to-transparent transition-opacity duration-200 sm:hidden",
+          edges.canRight ? "opacity-100" : "opacity-0",
+        )}
       />
     </nav>
   );

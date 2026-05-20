@@ -30,6 +30,9 @@ export type ShareToken = {
   usedAt: string | null;
   /** Free-form note for your own bookkeeping (e.g. "DesignOps Bootcamp"). */
   note?: string;
+  /** 6-digit PIN minted alongside the URL. Lets the visitor unlock the case
+   *  study from the access-denied page itself, without leaving. */
+  pin?: string;
 };
 
 export type ShareTokenStore = { tokens: ShareToken[] };
@@ -55,6 +58,25 @@ export function findToken(id: string | null | undefined): ShareToken | null {
   if (!id) return null;
   const { tokens } = readTokenStore();
   return tokens.find((t) => t.id === id) ?? null;
+}
+
+export function findTokenByPin(
+  pin: string | null | undefined,
+): ShareToken | null {
+  if (!pin || !/^\d{6}$/.test(pin)) return null;
+  const { tokens } = readTokenStore();
+  return tokens.find((t) => t.pin === pin) ?? null;
+}
+
+/** A token whose PIN can still be used. Burned/expired/revoked tokens free up
+ *  their PIN for reuse on the next mint. */
+export function isTokenActive(token: ShareToken): boolean {
+  if (token.revoked) return false;
+  if (token.expiresAt && new Date(token.expiresAt).getTime() < Date.now()) {
+    return false;
+  }
+  if (token.type === "one-time" && token.usedAt) return false;
+  return true;
 }
 
 export type AccessVerdict =
@@ -95,4 +117,16 @@ export function generateTokenId(): string {
     .replace(/\+/g, "-")
     .replace(/\//g, "_")
     .replace(/=+$/g, "");
+}
+
+/** 6-digit PIN, guaranteed unique against the supplied "in-use" set. The
+ *  caller passes PINs that belong to active (non-expired/non-revoked/non-used)
+ *  tokens so retired entries can recycle their PIN. */
+export function generatePin(reservedPins: Set<string>): string {
+  for (let attempt = 0; attempt < 1000; attempt++) {
+    const n = crypto.randomInt(0, 1_000_000);
+    const pin = n.toString().padStart(6, "0");
+    if (!reservedPins.has(pin)) return pin;
+  }
+  throw new Error("Failed to generate a unique PIN after 1000 attempts");
 }

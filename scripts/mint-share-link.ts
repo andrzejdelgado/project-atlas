@@ -2,7 +2,9 @@
 import { siteConfig } from "../lib/site";
 import {
   type ShareTokenType,
+  generatePin,
   generateTokenId,
+  isTokenActive,
   readTokenStore,
   writeTokenStore,
 } from "../lib/share-tokens";
@@ -101,6 +103,14 @@ function main() {
   const expiresAt = parseExpiry(args.expires, type === "reusable" ? 90 : 7);
 
   const store = readTokenStore();
+  const reservedPins = new Set(
+    store.tokens
+      .filter(isTokenActive)
+      .map((t) => t.pin)
+      .filter((p): p is string => !!p),
+  );
+  const pin = generatePin(reservedPins);
+
   store.tokens.push({
     id,
     recipient: args.recipient,
@@ -111,11 +121,13 @@ function main() {
     revoked: false,
     usedAt: null,
     note: args.note,
+    pin,
   });
   writeTokenStore(store);
 
   const base = siteConfig.url.replace(/\/$/, "");
   const url = `${base}/case-studies/${slug}?k=${id}`;
+  const pinEntryUrl = `${base}/case-studies/${slug}`;
 
   console.log("");
   console.log("Share link minted.");
@@ -128,6 +140,10 @@ function main() {
   console.log("URL (copy this):");
   console.log("");
   console.log(`  ${url}`);
+  console.log("");
+  console.log(`PIN (or paste this and have them enter it at ${pinEntryUrl}):`);
+  console.log("");
+  console.log(`  ${pin}`);
   console.log("");
   console.log(
     "Don't forget to commit content/share-tokens.json and redeploy so the token is recognized in production.",

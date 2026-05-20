@@ -396,7 +396,7 @@ function CouponCard({
   return (
     <article
       data-coupon
-      className="flex aspect-video w-[320px] shrink-0 snap-start flex-col overflow-hidden rounded-lg transition-colors duration-300"
+      className="flex aspect-video w-[260px] shrink-0 snap-start flex-col overflow-hidden rounded-lg transition-colors duration-300 sm:w-[320px]"
       style={{
         backgroundColor: t.card,
         border: `1px solid ${t.border}`,

@@ -39,6 +39,18 @@
       "expiresAt": "2026-08-18T15:50:38.041Z",
       "revoked": false,
       "usedAt": null
+    },
+    {
+      "id": "s7GW6S06duPZxQX-NuAPRL0Ov2t3w4GF",
+      "recipient": "PIN Smoke Test",
+      "company": "Localhost",
+      "type": "reusable",
+      "issuedAt": "2026-05-20T16:25:10.046Z",
+      "expiresAt": "2026-08-18T16:25:10.043Z",
+      "revoked": false,
+      "usedAt": null,
+      "note": "test-pin-flow",
+      "pin": "210283"
     }
   ]
 }

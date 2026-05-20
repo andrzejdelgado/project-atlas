@@ -262,7 +262,7 @@ function SurfaceNest({
           />
         </span>
         <span className="text-sm">
-          <span className="sm:hidden">Launch Saturn</span>
+          <span className="sm:hidden">Saturn</span>
           <span className="hidden sm:inline">Launch Saturn Heavy</span>
         </span>
       </button>

@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { ArrowLeft, Lock } from "lucide-react";
+import { Lock } from "lucide-react";
 
+import { RedeemPinPopover } from "@/components/saturn-heavy/redeem-pin-popover";
 import { RequestAccessPopover } from "@/components/saturn-heavy/request-access-popover";
 
 type DenialReason =
@@ -78,13 +78,9 @@ export function ShareAccessDenied({ reason, slug = "saturn-heavy" }: Props) {
       </p>
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <RequestAccessPopover slug={slug} reason={reason} />
-        <Link
-          href="/"
-          className="text-muted-foreground hover:text-foreground hover:bg-foreground/5 inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm transition-colors"
-        >
-          <ArrowLeft className="size-4" aria-hidden="true" />
-          Back to portfolio
-        </Link>
+        <div className="ml-auto">
+          <RedeemPinPopover slug={slug} />
+        </div>
       </div>
     </section>
   );

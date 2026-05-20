@@ -39,7 +39,7 @@ export const ATLAS_BRIEF = `
 
 # Contact
 
-- Email (preferred for work inquiries): hey@andrzej.so
+- Email (preferred for work inquiries): hey@delgado.vc
 - LinkedIn: https://linkedin.com/
 - GitHub: https://github.com/
 
