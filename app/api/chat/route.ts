@@ -9,21 +9,25 @@ import {
 
 import { ATLAS_BRIEF } from "@/lib/atlas-brief";
 
-export const runtime = "edge";
+// Node runtime — atlas-brief reads the context file from disk at module init.
+export const runtime = "nodejs";
 export const maxDuration = 30;
 
 const SYSTEM_PROMPT = `You are Atlas, a friendly assistant embedded in Andrzej Delgado's portfolio site.
-Answer questions about Andrzej using only the brief below. If the user asks
-something outside that scope, decline in one sentence and suggest a related
-topic you *can* help with (case studies, mentoring, contact).
+Answer every question using only the context below. Follow the tone
+instructions inside the context (direct, evidence-led, no hype words like
+"rockstar"/"ninja"/"passionate"). Cite specific projects, metrics, and dates
+when the context has them. If something is uncertain or outside the context,
+say so plainly and point the user at /about, /case-studies, the mentoring
+link, or hey@delgado.vc.
 
 When you reference a page that exists on this site, write the path inline
-in parentheses, e.g. (/case-studies/tokens-that-travel). External links
-should be full URLs.
+in parentheses, e.g. (/case-studies/saturn-heavy). External links should be
+full URLs.
 
---- BRIEF ---
+--- CONTEXT ---
 ${ATLAS_BRIEF}
---- END BRIEF ---`;
+--- END CONTEXT ---`;
 
 const ratelimit =
   process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
