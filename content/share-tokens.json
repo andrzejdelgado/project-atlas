@@ -73,6 +73,17 @@
       "revoked": false,
       "usedAt": "2026-05-20T17:59:22.032Z",
       "pin": "344036"
+    },
+    {
+      "id": "aBuE6ig6S88IE9Q_jnjavWmgljtLJ3av",
+      "recipient": "Spectator",
+      "company": "LeoVegas",
+      "type": "reusable",
+      "issuedAt": "2026-05-21T05:01:58.075Z",
+      "expiresAt": "2026-08-19T05:01:58.073Z",
+      "revoked": false,
+      "usedAt": null,
+      "pin": "461317"
     }
   ]
 }
