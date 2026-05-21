@@ -10,8 +10,8 @@ import { ArrowUp, ArrowUpRight, X } from "lucide-react";
 import { MatrixDots } from "@/components/matrix-dots";
 
 const STARTERS = [
+  "Walk me through Saturn Heavy.",
   "What's Andrzej's mentoring style?",
-  "Walk me through “Tokens that travel”.",
   "How do I book a session?",
   "Is he available for new work?",
 ];
