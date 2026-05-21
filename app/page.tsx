@@ -8,6 +8,7 @@ import {
   Calendar,
   CalendarCheck,
   CalendarPlus,
+  Download,
   MessageSquare,
   Rocket,
   Sparkles,
@@ -23,7 +24,7 @@ import { MalagaWeather } from "@/components/malaga-weather";
 import { LinkedinIcon, MediumIcon } from "@/components/brand-icons";
 import { getAllCaseStudies, getAllProjects } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
-import { mentorship, live } from "@/lib/dashboard";
+import { mentorship, live, skills } from "@/lib/dashboard";
 import { getAdpListStats } from "@/lib/adplist";
 import { getMediumArticles } from "@/lib/medium";
 import { cn } from "@/lib/utils";
@@ -498,6 +499,32 @@ export default async function Home() {
           </a>
         </section>
 
+        {/* Skills */}
+        <section className="mt-12 sm:mt-16">
+          <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
+          <div className="border-border bg-card/40 mt-4 rounded-2xl border p-5 sm:p-6">
+            <div className="space-y-7">
+              {skills.map((cat) => (
+                <div key={cat.label}>
+                  <h3 className="text-muted-foreground font-mono text-2xs uppercase tracking-mini">
+                    {cat.label}
+                  </h3>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {cat.items.map((item) => (
+                      <span
+                        key={item}
+                        className="border-border/60 bg-secondary/60 text-foreground/90 inline-flex items-center rounded-full border px-3 py-1 text-sm"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Writing (Medium) */}
         <section className="mt-12 sm:mt-16">
           <h2 className="text-2xl font-semibold tracking-tight">
@@ -730,14 +757,21 @@ export default async function Home() {
               <MalagaWeather />
             </div>
           </div>
-          <Link
-            href="/about"
-            className="cta-button mt-6"
-          >
-            <UserRound className="size-4 opacity-85" aria-hidden="true" />
-            More about me
-            <ArrowRight className="size-4 opacity-85" aria-hidden="true" />
-          </Link>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <Link href="/about" className="cta-button">
+              <UserRound className="size-4 opacity-85" aria-hidden="true" />
+              More about me
+              <ArrowRight className="size-4 opacity-85" aria-hidden="true" />
+            </Link>
+            <a
+              href="/andrzej-delgado-cv.pdf"
+              download="andrzej-delgado-cv.pdf"
+              className="cta-button"
+            >
+              <Download className="size-4 opacity-85" aria-hidden="true" />
+              CV
+            </a>
+          </div>
         </section>
       </div>
     </div>

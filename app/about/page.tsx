@@ -7,7 +7,7 @@ import { PageActions } from "@/components/page-actions";
 import { ListeningTile } from "@/components/listening-tile";
 import { Tile, TileHeader } from "@/components/tile";
 import { getAbout } from "@/lib/content";
-import { principles, reading, skills } from "@/lib/dashboard";
+import { principles, reading } from "@/lib/dashboard";
 
 const about = getAbout();
 
@@ -32,32 +32,6 @@ export default function AboutPage() {
           </div>
         </EditableArticle>
       </div>
-
-      {/* Skills */}
-      <section className="mt-16 sm:mt-20">
-        <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
-        <div className="border-border bg-card/40 mt-4 rounded-2xl border p-5 sm:p-6">
-          <div className="space-y-7">
-            {skills.map((cat) => (
-              <div key={cat.label}>
-                <h3 className="text-muted-foreground font-mono text-2xs uppercase tracking-mini">
-                  {cat.label}
-                </h3>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {cat.items.map((item) => (
-                    <span
-                      key={item}
-                      className="border-border/60 bg-secondary/60 text-foreground/90 inline-flex items-center rounded-full border px-3 py-1 text-sm"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Guiding principles */}
       <section className="mt-16 sm:mt-20">

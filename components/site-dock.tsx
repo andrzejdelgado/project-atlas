@@ -63,13 +63,14 @@ export function SiteDock() {
 
         <div className="flex items-center gap-1.5">
           <DockTooltip label="Download CV (PDF)">
-            <Link
-              href="#"
+            <a
+              href="/andrzej-delgado-cv.pdf"
+              download="andrzej-delgado-cv.pdf"
               aria-label="Download CV (PDF)"
               className={dockButton}
             >
               <FileText className="size-4 opacity-85" aria-hidden="true" />
-            </Link>
+            </a>
           </DockTooltip>
           <DockTooltip label="Toggle theme">
             <ThemeToggle />
