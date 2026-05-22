@@ -133,7 +133,9 @@ export function FigmaCatDemo() {
       </div>
 
       <figcaption className="text-muted-foreground/85 mt-5 mb-7 text-center font-mono text-2xs uppercase tracking-mini sm:mb-9">
-        Sorry, I cannot share any Figma links
+        Sorry, due to signed NDA clause,
+        <br className="sm:hidden" />{" "}
+        I cannot share any Figma links here
       </figcaption>
     </figure>
   );
