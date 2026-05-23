@@ -137,8 +137,8 @@ const EXPERIENCES: Array<{
     logoClassName: "rounded-[8px]",
   },
   {
-    dateLabel: "2009 — 2020",
-    dateRange: "2009/2020",
+    dateLabel: "2009 — 2017",
+    dateRange: "2009/2017",
     title: "Founder & CEO",
     company: "Delgado Design",
     logo: "/images/logos/delgado-design.png",
