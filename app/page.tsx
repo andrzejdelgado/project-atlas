@@ -112,9 +112,27 @@ const EXPERIENCES: Array<{
   logoClassName?: string;
 }> = [
   {
-    dateLabel: "2020 — Now",
-    dateRange: "2020/",
+    dateLabel: "2023 — Now",
+    dateRange: "2023/",
     title: "Principal Product Designer",
+    company: "The Workshop",
+    logo: "/images/logos/the-workshop.png",
+    whiteDisc: true,
+    discColor: "#029bc7",
+  },
+  {
+    dateLabel: "2021 — 2023",
+    dateRange: "2021/2023",
+    title: "Senior Product Designer",
+    company: "The Workshop",
+    logo: "/images/logos/the-workshop.png",
+    whiteDisc: true,
+    discColor: "#029bc7",
+  },
+  {
+    dateLabel: "2020 — 2021",
+    dateRange: "2020/2021",
+    title: "Product Designer",
     company: "The Workshop",
     logo: "/images/logos/the-workshop.png",
     whiteDisc: true,
