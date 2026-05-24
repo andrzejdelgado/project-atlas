@@ -42,6 +42,10 @@ token-atlas-prompt.md
 skill-draft/
 skills-lock.json
 
+# CV source / per-role tailored CVs — kept local. The publicly downloadable
+# CV at public/andrzej-delgado-cv.pdf is intentionally tracked.
+content/cv/
+
 # internal / agent tooling
 .claude/
 .mcp.json

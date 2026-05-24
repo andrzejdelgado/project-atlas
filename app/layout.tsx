@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.author} — ${siteConfig.name}`,
+    default: `${siteConfig.author}: ${siteConfig.tagline.replace(/\.$/, "")}`,
     template: `%s — ${siteConfig.author}`,
   },
   description: siteConfig.description,
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   category: "design",
   generator: "Next.js",
   openGraph: {
-    title: `${siteConfig.author} — ${siteConfig.name}`,
+    title: `${siteConfig.author}: ${siteConfig.tagline.replace(/\.$/, "")}`,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.author} — ${siteConfig.name}`,
+    title: `${siteConfig.author}: ${siteConfig.tagline.replace(/\.$/, "")}`,
     description: siteConfig.description,
     // Twitter image follows the OG image via file-based discovery too.
   },

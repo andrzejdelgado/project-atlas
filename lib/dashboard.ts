@@ -84,6 +84,8 @@ export const skills: { label: string; items: string[] }[] = [
       "People management",
       "Design leadership",
       "Design Engineering",
+      "Design Systems",
+      "Systems Governance",
       "UX strategy",
       "Agile design",
       "AI",
@@ -103,6 +105,9 @@ export const skills: { label: string; items: string[] }[] = [
       "Jira",
       "Gemini",
       "Figma",
+      "HTML/CSS",
+      "Next.js",
+      "Tailwind",
     ],
   },
   {
@@ -117,6 +122,7 @@ export const skills: { label: string; items: string[] }[] = [
       "Creativity",
       "Strategy",
       "Adaptability",
+      "AI-Enhanced Workflows",
     ],
   },
 ];

@@ -171,12 +171,12 @@ const EXPERIENCES: Array<{
 // we use `absolute` to land exactly the string we want in <title>.
 export const metadata: Metadata = {
   title: {
-    absolute: `${siteConfig.author} — ${siteConfig.jobTitle}`,
+    absolute: `${siteConfig.author}: ${siteConfig.tagline.replace(/\.$/, "")}`,
   },
   description: siteConfig.description,
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${siteConfig.author} — ${siteConfig.jobTitle}`,
+    title: `${siteConfig.author}: ${siteConfig.tagline.replace(/\.$/, "")}`,
     description: siteConfig.description,
     url: "/",
     siteName: siteConfig.name,
@@ -184,7 +184,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.author} — ${siteConfig.jobTitle}`,
+    title: `${siteConfig.author}: ${siteConfig.tagline.replace(/\.$/, "")}`,
     description: siteConfig.description,
   },
 };
