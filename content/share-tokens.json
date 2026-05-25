@@ -84,6 +84,17 @@
       "revoked": false,
       "usedAt": null,
       "pin": "461317"
+    },
+    {
+      "id": "3jF8uQNl_cMIOHSLsMAFFG2pai0A5dkp",
+      "recipient": "Martynas Strabeika",
+      "company": "Expenti",
+      "type": "one-time",
+      "issuedAt": "2026-05-25T11:41:13.602Z",
+      "expiresAt": "2026-06-01T11:41:13.599Z",
+      "revoked": false,
+      "usedAt": null,
+      "pin": "669195"
     }
   ]
 }
