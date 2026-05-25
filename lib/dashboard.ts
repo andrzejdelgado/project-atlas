@@ -106,6 +106,7 @@ export const skills: { label: string; items: string[] }[] = [
       "Gemini",
       "Figma",
       "HTML/CSS",
+      "React",
       "Next.js",
       "Tailwind",
     ],
