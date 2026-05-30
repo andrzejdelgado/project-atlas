@@ -110,6 +110,8 @@ const EXPERIENCES: Array<{
   /** Extra className applied to the logo <Image> — used for per-mark
    *  border-radius tweaks (e.g. round a circular logo). */
   logoClassName?: string;
+  /** When true, append "· Remote" to the company support text. */
+  remote?: boolean;
 }> = [
   {
     dateLabel: "2023 — Now",
@@ -145,6 +147,7 @@ const EXPERIENCES: Array<{
     company: "Clusterone",
     logo: "/images/logos/clusterone.png",
     logoClassName: "rounded-full",
+    remote: true,
   },
   {
     dateLabel: "2017 — 2018",
@@ -153,6 +156,7 @@ const EXPERIENCES: Array<{
     company: "Good AI Lab",
     logo: "/images/logos/good-ai-lab.png",
     logoClassName: "rounded-[8px]",
+    remote: true,
   },
   {
     dateLabel: "2009 — 2017",
@@ -484,6 +488,14 @@ export default async function Home() {
                     </h3>
                     <p className="text-muted-foreground mt-1.5 font-mono text-2xs uppercase tracking-mini">
                       <span>{exp.company}</span>
+                      {exp.remote ? (
+                        <>
+                          <span aria-hidden className="mx-1.5 opacity-60">
+                            ·
+                          </span>
+                          <span>Remote</span>
+                        </>
+                      ) : null}
                       <span aria-hidden className="mx-1.5 opacity-60 sm:hidden">
                         ·
                       </span>
