@@ -95,6 +95,17 @@
       "revoked": false,
       "usedAt": null,
       "pin": "669195"
+    },
+    {
+      "id": "AQjkMXEp9siiRmohf3zu1GBNEd-XuXxb",
+      "recipient": "Moises Clemente",
+      "company": "Expenti",
+      "type": "one-time",
+      "issuedAt": "2026-05-30T09:43:08.770Z",
+      "expiresAt": "2026-06-06T09:43:08.767Z",
+      "revoked": false,
+      "usedAt": null,
+      "pin": "333734"
     }
   ]
 }
