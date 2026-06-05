@@ -13,10 +13,16 @@ import { renderInlineMarkdown } from "@/lib/inline-markdown";
 import { verifyAccess } from "@/lib/share-tokens";
 import { siteConfig } from "@/lib/site";
 
-// Slugs that require an invite token. The metadata (title/description) is
-// still served publicly so search-engine snippets stay informative, but the
-// body is replaced with a "Request access" UI for visitors without a valid
-// token. Add more slugs here to gate them under the same scheme.
+// Slugs that require an invite token when GATING_ENABLED is true. The
+// metadata (title/description) is still served publicly so search-engine
+// snippets stay informative; the body is replaced with a "Request access"
+// UI for visitors without a valid token. Add more slugs here to gate them
+// under the same scheme.
+//
+// Master switch. When false, ALL slugs are served publicly — the gate is
+// bypassed regardless of what's in GATED_SLUGS. Flip back to true to
+// reactivate the share-link / PIN flow.
+const GATING_ENABLED = false;
 const GATED_SLUGS = new Set<string>(["saturn-heavy"]);
 
 const fmt = new Intl.DateTimeFormat("en-US", {
@@ -101,10 +107,15 @@ export default async function CaseStudyPage({
   if (!entry) notFound();
 
   // Per-recipient share-link gate. Off for unlisted slugs (most case
-  // studies are public); on for slugs listed in GATED_SLUGS.
-  const gate = GATED_SLUGS.has(slug)
-    ? verifyAccess((await searchParams).k ?? null)
-    : ({ kind: "granted" as const, token: null });
+  // studies are public); on for slugs listed in GATED_SLUGS — and only
+  // when the master switch GATING_ENABLED is on. When the master switch
+  // is off, every slug is served publicly and any `?k=…` query param is
+  // ignored (no watermark, no one-time burn) — flip GATING_ENABLED back
+  // to true to restore the full share-link / PIN flow.
+  const gate =
+    GATING_ENABLED && GATED_SLUGS.has(slug)
+      ? verifyAccess((await searchParams).k ?? null)
+      : ({ kind: "granted" as const, token: null });
 
   const { title, description, date, cover, tags } = entry.frontmatter;
   const base = siteConfig.url.replace(/\/$/, "");
