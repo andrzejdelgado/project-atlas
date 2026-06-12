@@ -49,17 +49,17 @@ const ROWS: Row[] = [
 
 export function TypographySystemDemo() {
   return (
-    <figure className="border-border bg-card/40 relative mt-6 rounded-2xl border px-10 py-12">
+    <figure className="border-border bg-card/40 relative mt-6 rounded-2xl border px-6 py-10 sm:px-10 sm:py-12">
       <span
         role="img"
         aria-label="Each context tuned for its optical needs"
         className="bg-emerald-400 absolute top-4 right-4 size-2 rounded-full"
       />
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-6 sm:gap-8">
         {ROWS.map((row) => (
           <div
             key={row.name}
-            className="grid grid-cols-[5rem_1fr] items-baseline gap-6"
+            className="flex flex-col gap-1.5 sm:grid sm:grid-cols-[5rem_1fr] sm:items-baseline sm:gap-6"
           >
             <span className="text-muted-foreground/55 font-mono text-xs tracking-wider lowercase">
               {row.name}
