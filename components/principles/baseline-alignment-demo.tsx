@@ -29,7 +29,7 @@ function Row({ label, children, align, guide }: RowProps) {
     <div className="grid grid-cols-[6rem_1fr] items-center gap-5">
       <span className="text-muted-foreground text-sm">{label}</span>
       <div
-        className="relative flex gap-1.5"
+        className="relative flex min-w-0 flex-wrap gap-x-1.5 gap-y-1"
         style={{ alignItems: align }}
       >
         {children}
@@ -70,20 +70,24 @@ function Card({ variant, guide }: { variant: Variant; guide: boolean }) {
             179
           </span>
           <span className="text-foreground/70 text-sm tabular-nums">.99</span>
-          <span className="text-muted-foreground/80 text-xs">/ mo</span>
+          <span className="text-muted-foreground/80 text-xs whitespace-nowrap">
+            / mo
+          </span>
         </Row>
         <Row label="Active users" align={align} guide={guide}>
           <span className="text-foreground text-3xl font-semibold tabular-nums">
             458
           </span>
-          <span className="text-muted-foreground/80 text-xs">customers</span>
+          <span className="text-muted-foreground/80 text-xs whitespace-nowrap">
+            customers
+          </span>
         </Row>
         <Row label="Trend" align={align} guide={guide}>
           <span className="text-emerald-400 text-base">↑</span>
           <span className="text-foreground text-3xl font-semibold tabular-nums">
             12.5%
           </span>
-          <span className="text-muted-foreground/80 text-xs">
+          <span className="text-muted-foreground/80 text-xs whitespace-nowrap">
             vs last quarter
           </span>
         </Row>
