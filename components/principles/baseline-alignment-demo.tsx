@@ -18,34 +18,30 @@ const INDICATORS: Record<Variant, { className: string; label: string }> = {
 };
 
 type RowProps = {
-  label: string;
   children: React.ReactNode;
   align: "center" | "baseline";
   guide: boolean;
 };
 
-function Row({ label, children, align, guide }: RowProps) {
+function Row({ children, align, guide }: RowProps) {
   return (
-    <div className="grid grid-cols-[6rem_1fr] items-center gap-5">
-      <span className="text-muted-foreground text-sm">{label}</span>
-      <div
-        className="relative flex min-w-0 flex-wrap gap-x-1.5 gap-y-1"
-        style={{ alignItems: align }}
-      >
-        {children}
-        {guide && (
-          <div
-            aria-hidden="true"
-            className={cn(
-              "pointer-events-none absolute inset-x-0 h-px",
-              align === "center"
-                ? "top-1/2 -translate-y-1/2 bg-red-400/45"
-                : "bg-emerald-400/45",
-            )}
-            style={align === "baseline" ? { bottom: "5px" } : undefined}
-          />
-        )}
-      </div>
+    <div
+      className="relative flex min-w-0 flex-wrap gap-x-1.5 gap-y-1"
+      style={{ alignItems: align }}
+    >
+      {children}
+      {guide && (
+        <div
+          aria-hidden="true"
+          className={cn(
+            "pointer-events-none absolute inset-x-0 h-px",
+            align === "center"
+              ? "top-1/2 -translate-y-1/2 bg-red-400/45"
+              : "bg-emerald-400/45",
+          )}
+          style={align === "baseline" ? { bottom: "5px" } : undefined}
+        />
+      )}
     </div>
   );
 }
@@ -64,7 +60,7 @@ function Card({ variant, guide }: { variant: Variant; guide: boolean }) {
         )}
       />
       <div className="flex flex-col gap-8">
-        <Row label="Pricing" align={align} guide={guide}>
+        <Row align={align} guide={guide}>
           <span className="text-foreground/70 text-base">$</span>
           <span className="text-foreground text-3xl font-semibold tabular-nums">
             179
@@ -74,7 +70,7 @@ function Card({ variant, guide }: { variant: Variant; guide: boolean }) {
             / mo
           </span>
         </Row>
-        <Row label="Active users" align={align} guide={guide}>
+        <Row align={align} guide={guide}>
           <span className="text-foreground text-3xl font-semibold tabular-nums">
             458
           </span>
@@ -82,7 +78,7 @@ function Card({ variant, guide }: { variant: Variant; guide: boolean }) {
             customers
           </span>
         </Row>
-        <Row label="Trend" align={align} guide={guide}>
+        <Row align={align} guide={guide}>
           <span className="text-emerald-400 text-base">↑</span>
           <span className="text-foreground text-3xl font-semibold tabular-nums">
             12.5%
