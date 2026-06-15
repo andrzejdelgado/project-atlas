@@ -1,4 +1,4 @@
-import { BrandNetwork } from "./brand-network";
+import { BrandNetworkCard } from "./brand-network-card";
 
 export function BrandCallout() {
   return (
@@ -20,18 +20,7 @@ export function BrandCallout() {
         tons of headaches, and allows creating brands with differentiation,
         while keeping core architecture exactly the same.
       </p>
-      <div className="border-border bg-card/40 mt-5 rounded-2xl border p-5 sm:p-7">
-        <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">
-          Saturn Heavy allows configuration of{" "}
-          <strong className="text-foreground">12 brands</strong> so far, but
-          was built to host{" "}
-          <strong className="text-foreground">100+ brands</strong>, that
-          would be build{" "}
-          <strong className="text-foreground">in weeks</strong> instead of
-          months.
-        </p>
-        <BrandNetwork />
-      </div>
+      <BrandNetworkCard />
     </section>
   );
 }
