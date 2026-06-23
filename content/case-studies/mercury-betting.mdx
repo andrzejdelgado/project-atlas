@@ -1,0 +1,42 @@
+---
+title: "Mercury Betting"
+description: "An interactive iGaming case study — three responsive, touch-first components (a game coupon, a betslip and a promotions carousel) presented inside a phone you can actually swipe with your mouse, the way Chrome's device mode lets you."
+cta: "Touch-first iGaming components you can feel"
+date: "2026-06-22"
+tags: ["iGaming", "interaction design", "prototyping", "design engineering"]
+draft: true
+---
+
+import { GameCouponDemo } from "@/components/hyper-casino/game-coupon-demo";
+import { BetslipDemo } from "@/components/hyper-casino/betslip-demo";
+import { PromoCardDemo } from "@/components/hyper-casino/promo-card-demo";
+
+## Show, don't tell
+
+These components were designed for thumbs, not mice — so rather than show static screenshots, each one lives inside a phone you can operate directly. On desktop, your cursor becomes a touch point the moment it enters the screen: press, drag and swipe exactly as you would in the device mode of Chrome's inspector. On a real phone, just use your finger.
+
+> Work in progress — the written narrative (role, process, decisions, outcome) lands in the next pass. This page is the interactive core it will be built around.
+
+## Game coupon
+
+<div className="my-8 flex justify-center">
+  <GameCouponDemo />
+</div>
+
+A live, in-play football coupon. Swipe the market strip to move between Match Result, Total Goals and Both Teams to Score; tap a price to select it; and watch the odds tick up and down the way they do in real money markets.
+
+## Betslip
+
+<div className="my-8 flex justify-center">
+  <BetslipDemo />
+</div>
+
+Where it all adds up. Swipe a selection to the left to remove it, switch between singles and an accumulator, set your stake with the quick chips, and watch the potential returns recalculate as you go.
+
+## Promotions
+
+<div className="my-8 flex justify-center">
+  <PromoCardDemo />
+</div>
+
+A swipeable promotions carousel — flick through odds boosts, free bets and insurance offers, and opt in with a single tap.

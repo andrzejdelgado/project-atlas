@@ -22,7 +22,7 @@ import {
 } from "@/lib/project-brand-assets";
 import { MalagaWeather } from "@/components/malaga-weather";
 import { LinkedinIcon, MediumIcon } from "@/components/brand-icons";
-import { getAllCaseStudies, getAllProjects } from "@/lib/content";
+import { getAllProjects, getPublishedCaseStudies } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 import { mentorship, live, skills } from "@/lib/dashboard";
 import { getAdpListStats } from "@/lib/adplist";
@@ -195,7 +195,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const allProjects = getAllProjects();
-  const allCaseStudies = getAllCaseStudies();
+  const allCaseStudies = getPublishedCaseStudies();
   const adp = await getAdpListStats();
   const medium = await getMediumArticles(3);
   const reviewCount = adp?.reviewCount ?? null;

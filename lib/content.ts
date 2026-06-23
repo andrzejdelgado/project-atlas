@@ -6,6 +6,9 @@ export type Frontmatter = {
   title: string;
   description: string;
   date: string;
+  /** When true, hidden from listings, the homepage, and the sitemap, but still
+   * reachable at its own URL for preview. Used for work-in-progress entries. */
+  draft?: boolean;
   cover?: string;
   tags?: string[];
   /** Optional client/company logo path — slotted into the home tile when present. */
@@ -66,6 +69,12 @@ export function getAllCaseStudies(): ContentEntry[] {
 
 export function getCaseStudyBySlug(slug: string): ContentEntry | undefined {
   return getAllCaseStudies().find((c) => c.slug === slug);
+}
+
+/** Case studies that should appear publicly (listings, homepage, sitemap).
+ * Drafts stay routable via getCaseStudyBySlug for preview but are excluded here. */
+export function getPublishedCaseStudies(): ContentEntry[] {
+  return getAllCaseStudies().filter((c) => !c.frontmatter.draft);
 }
 
 export function getAllProjects(): ContentEntry[] {

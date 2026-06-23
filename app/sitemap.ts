@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getAllCaseStudies, getAllProjects } from "@/lib/content";
+import { getAllProjects, getPublishedCaseStudies } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 
 // Auto-generated sitemap — Next.js serves this at /sitemap.xml. Static
@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/projects`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
 
-  const caseStudies: MetadataRoute.Sitemap = getAllCaseStudies().map((c) => ({
+  const caseStudies: MetadataRoute.Sitemap = getPublishedCaseStudies().map((c) => ({
     url: `${base}/case-studies/${c.slug}`,
     lastModified: new Date(c.frontmatter.date),
     changeFrequency: "monthly",

@@ -419,6 +419,49 @@
   will-change: opacity, transform;
 }
 
+/* Hyper-Casino — Place-bet error shake (logged-out cue). */
+@keyframes hc-bet-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-6px); }
+  30% { transform: translateX(5px); }
+  45% { transform: translateX(-4px); }
+  60% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+}
+
+.hc-bet-shake {
+  animation: hc-bet-shake 0.5s ease-in-out;
+}
+
+/* Hyper-Casino — promo "Redeem" button shine: a bright glint sweeps across the
+   button face every few seconds to draw the eye to the offer (the Cruip button-
+   shine effect, fired on a timer instead of on hover). */
+@keyframes hc-promo-shine {
+  0% { transform: translateX(-150%) skewX(-16deg); }
+  18% { transform: translateX(270%) skewX(-16deg); }
+  100% { transform: translateX(270%) skewX(-16deg); }
+}
+
+.hc-promo-shine::before {
+  content: "";
+  position: absolute;
+  top: -15%;
+  bottom: -15%;
+  left: 0;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.9) 50%, transparent);
+  transform: translateX(-150%) skewX(-16deg);
+  pointer-events: none;
+  will-change: transform;
+  animation: hc-promo-shine 5.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hc-promo-shine::before {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

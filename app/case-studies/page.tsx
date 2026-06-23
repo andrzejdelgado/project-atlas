@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { ContentCard } from "@/components/content-card";
 import { PageActions } from "@/components/page-actions";
-import { getAllCaseStudies } from "@/lib/content";
+import { getPublishedCaseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Case studies",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function CaseStudiesPage() {
-  const cases = getAllCaseStudies();
+  const cases = getPublishedCaseStudies();
   return (
     <div className="mx-auto w-full max-w-[840px] py-4 sm:py-6 lg:py-8">
       <PageActions backHref="/" />
